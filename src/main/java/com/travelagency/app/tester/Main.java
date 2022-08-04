@@ -6,6 +6,10 @@ import com.travelagency.app.dao.impl.UserDAOImpl;
 import com.travelagency.app.model.entity.Order;
 import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.model.entity.User;
+import com.travelagency.app.model.entity.constant.Hotel;
+import com.travelagency.app.model.entity.constant.Role;
+import com.travelagency.app.model.entity.constant.Status;
+import com.travelagency.app.model.entity.constant.TourType;
 
 import java.math.BigDecimal;
 
@@ -22,7 +26,7 @@ public class Main {
                 .setPassword("johny&capral")
                 .setInstagram("vietnamguy")
                 .setPhoneNumber("+84-988-988-98")
-                .setRole(User.Role.GUEST)
+                .setRole(Role.GUEST)
                 .setIsBlocked(false).build();
 
         User user1 = User.newUserBuilder()
@@ -33,7 +37,7 @@ public class Main {
                 .setPassword("joaal")
                 .setInstagram("viamguy")
                 .setPhoneNumber("+84-9888-98")
-                .setRole(User.Role.GUEST)
+                .setRole(Role.GUEST)
                 .setIsBlocked(false).build();
 
         User updated = User.newUserBuilder()
@@ -44,17 +48,17 @@ public class Main {
                 .setPassword("up")
                 .setInstagram("up")
                 .setPhoneNumber("up")
-                .setRole(User.Role.GUEST)
+                .setRole(Role.GUEST)
                 .setIsBlocked(false).build();
 
         Tour tour = Tour.newTourBuilder()
                 .setId(1)
                 .setNameUkr("Сонячна Іспанія")
                 .setNameEng("Sunny Spain")
-                .setTourType(Tour.TourType.REST)
+                .setTourType(TourType.REST)
                 .setPrice(BigDecimal.valueOf(899.99))
                 .setNumberOfPersons(2)
-                .setHotelTypeByStars(Tour.Hotel.FIVE_STAR)
+                .setHotelTypeByStars(Hotel.FIVE_STAR)
                 .setIsTourHot(true)
                 .setDiscount(BigDecimal.valueOf(25.00))
                 .build();
@@ -63,10 +67,10 @@ public class Main {
                 .setId(2)
                 .setNameUkr("Сонячна Іспія")
                 .setNameEng("Sny Spain")
-                .setTourType(Tour.TourType.SHOPPING)
+                .setTourType(TourType.SHOPPING)
                 .setPrice(BigDecimal.valueOf(89.99))
                 .setNumberOfPersons(8)
-                .setHotelTypeByStars(Tour.Hotel.ONE_STAR)
+                .setHotelTypeByStars(Hotel.ONE_STAR)
                 .setIsTourHot(false)
                 .setDiscount(BigDecimal.valueOf(25.00))
                 .build();
@@ -75,10 +79,10 @@ public class Main {
                 .setId(3)
                 .setNameUkr("Іспанія")
                 .setNameEng("Spain")
-                .setTourType(Tour.TourType.REST)
+                .setTourType(TourType.REST)
                 .setPrice(BigDecimal.valueOf(699.99))
                 .setNumberOfPersons(2)
-                .setHotelTypeByStars(Tour.Hotel.FIVE_STAR)
+                .setHotelTypeByStars(Hotel.FIVE_STAR)
                 .setIsTourHot(true)
                 .setDiscount(BigDecimal.valueOf(25.00))
                 .build();
@@ -87,10 +91,10 @@ public class Main {
                 .setId(4)
                 .setNameUkr("онячна Іспанія")
                 .setNameEng("n")
-                .setTourType(Tour.TourType.EXCURSION)
+                .setTourType(TourType.EXCURSION)
                 .setPrice(BigDecimal.valueOf(8.99))
                 .setNumberOfPersons(3)
-                .setHotelTypeByStars(Tour.Hotel.THREE_STAR)
+                .setHotelTypeByStars(Hotel.THREE_STAR)
                 .setIsTourHot(true)
                 .setDiscount(BigDecimal.valueOf(25.00))
                 .build();
@@ -99,29 +103,31 @@ public class Main {
                 .setId(4)
                 .setNameUkr("онячна Ісія")
                 .setNameEng("ndfdgfdgfd")
-                .setTourType(Tour.TourType.EXCURSION)
+                .setTourType(TourType.EXCURSION)
                 .setPrice(BigDecimal.valueOf(1488.99))
                 .setNumberOfPersons(8)
-                .setHotelTypeByStars(Tour.Hotel.FOUR_STAR)
+                .setHotelTypeByStars(Hotel.FOUR_STAR)
                 .setIsTourHot(false)
                 .setDiscount(BigDecimal.valueOf(25.00))
                 .build();
 
-        Order order = Order.newOrderBuilder()
-                .setId(1)
-                .setPrice(BigDecimal.valueOf(500.50))
-                .setStatus(Order.Status.REGISTERED)
-                .setNotes(null)
+        Order order3 = Order.newOrderBuilder()
+                .setId(5)
+                .setPrice(BigDecimal.valueOf(50.50))
+                .setStatus(Status.CANCELED)
+                .setNotes("djfkdf")
                 .build();
 
         //userDAO.createDefaultUser();
-        //userDAO.insertUser(user1);
+        //userDAO.insertUser(user);
         //userDAO.updateUser(18, user1);
         //System.out.println("Success");
 
-        //tourDAO.insertTour(tour1);
-        //tourDAO.insertTour(tour2);
-        //tourDAO.insertTour(tour3);
+        tourDAO.insertTour(tour1);
+        tourDAO.insertTour(tour2);
+        tourDAO.insertTour(tour3);
+        tourDAO.insertTour(tour);
+        tourDAO.insertTour(tour4);
 
         //System.out.println(userDAO.getUserById(14).toString());
         //System.out.println(userDAO.getUserByLogin("up").toString());
@@ -132,6 +138,7 @@ public class Main {
         //System.out.println(userDAO.findAllUsers().toString());
         //System.out.println(tourDAO.updateTour(7, tour4));
         //System.out.println(tourDAO.findAllTours().toString());
+        System.out.println(tourDAO.getAllHotTours().toString());
         //System.out.println(tourDAO.insertTour(tour4));
 
         //System.out.println(tourDAO.getTourByUkrName("Сонячна Іспанія").toString());
@@ -143,8 +150,8 @@ public class Main {
         //System.out.println(tourDAO.getToursByNumberOfPersons(8).toString());
         //System.out.println("*********************************");
         //System.out.println(tourDAO.getToursByPrice(BigDecimal.valueOf(8.99)).toString());
-        //System.out.println(orderDAO.insertOrder(order));
-        System.out.println(orderDAO.deleteOrder(1));
+        //System.out.println(orderDAO.insertOrder(order3));
+        //System.out.println(orderDAO.deleteOrder(4));
 
     }
 }

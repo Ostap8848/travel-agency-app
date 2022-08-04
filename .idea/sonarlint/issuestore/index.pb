@@ -27,10 +27,6 @@ m
 =src/main/java/com/travelagency/app/dao/impl/OrderDAOImpl.java,f\b\fb6fa222e96a42d7f65d03204293f535b3a41f30
 l
 <src/main/java/com/travelagency/app/dao/impl/TourDAOImpl.java,3\1\314e13fe8a7eb57bea1d521fb9ddf3b7a3a951f8
-l
-<src/main/java/com/travelagency/app/dao/impl/DBException.java,a\c\accb75725d55598bd2f02a90c7b605a3deb45e66
-S
-#src/sql/travel-agancy-db-create.sql,f\a\fa2a2ccdbdd0f6f14f754862c683208e405070c6
 c
 3src/main/java/com/travelagency/app/tester/Main.java,c\0\c0cfbe535edf02917938a07f5b459d6a0056e152
 l
@@ -45,3 +41,13 @@ n
 >src/main/java/com/travelagency/app/dao/mapper/OrderMapper.java,c\0\c09e1f7cf5281b69c3dcf66f637fe57cf1788880
 o
 ?src/main/java/com/travelagency/app/util/DataBaseConnection.java,8\8\888636af28ff9620b7fb5ac092b39d7ec5c784c7
+i
+9src/main/java/com/travelagency/app/util/PropertyPath.java,6\4\64c1ce2fa9c467ba96009a1530a6af021dab0340
+O
+src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
+v
+Fsrc/main/java/com/travelagency/app/controller/RegistrationServlet.java,e\6\e63176468b904356f41ead7cc76bc6722e16c48d
+L
+src/sql/travel-agency-db.sql,2\9\2997734019847779993405c24ab2e3c3ec8a4dd1
+o
+?src/main/java/com/travelagency/app/dao/impl/ConstantsQuery.java,6\1\612e4d9a61690b76b8e142b3153348430b73392f

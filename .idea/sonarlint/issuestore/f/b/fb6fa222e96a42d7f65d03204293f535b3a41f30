@@ -1,6 +1,5 @@
 
 d
-java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(¥¡‹Ä8•Â√°§0
+java:S2095K"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(Ú°•π8çΩ◊¶§0
 d
-java:S2095O"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(Ú°•π8çΩ◊¶§0
-]	java:S125"<This block of commented-out lines of code should be removed.(èÔ©Ñ˚ˇˇˇˇ8Óÿ Ñ•0
+java:S2095x"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(¥¡‹Ä8•Â√°§0

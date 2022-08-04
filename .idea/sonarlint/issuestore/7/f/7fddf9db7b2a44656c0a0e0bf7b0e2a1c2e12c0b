@@ -1,10 +1,7 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(Ç™ıùÿÿÿÿ8·ãõ¤0
-H
-java:S1144!"+Remove this unused private "getUrl" method.(‘Â¬Ã8·ãõ¤0
 d
-java:S2095q"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0
-d
-java:S2095^"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0
+java:S2095]"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0
 e
-java:S2095—"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(´ÁÜ€8·ãõ¤0
+java:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(´ÁÜ€8·ãõ¤0
+d
+java:S2095K"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0

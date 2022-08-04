@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface TourDAO {
     boolean insertTour(Tour tour);
-    boolean deleteTour(int tourId);
-    boolean updateTour(int tourId, Tour tour);
+    boolean deleteTour(Tour tour);
+    boolean updateTour(Tour tour);
     Tour getTourById(int tourId);
     Tour getTourByUkrName(String nameUkr);
     Tour getTourByEngName(String nameEng);
@@ -16,5 +16,6 @@ public interface TourDAO {
     List<Tour> getToursByPrice(BigDecimal price);
     List<Tour> getToursByNumberOfPersons(int numberOfPersons);
     List<Tour> getToursByHotelType(Tour.Hotel hotelType);
-    List<Tour> getAllTours();
+    List<Tour> getAllHotTours();
+    List<Tour> findAllTours();
 }

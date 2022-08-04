@@ -7,7 +7,10 @@ import com.travelagency.app.util.DataBaseConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +19,6 @@ import java.util.Optional;
 public class OrderDAOImpl implements OrderDAO {
     static final Logger LOG = LogManager.getLogger(OrderDAOImpl.class);
 
-    private static final String FULL_URL = "jdbc:mysql://localhost:3306/travel-agency-db?user=root&password=admin";
     private static OrderDAOImpl instance;
 
     public static synchronized OrderDAOImpl getInstance() {
@@ -25,46 +27,40 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return instance;
     }
+
     @Override
     public boolean insertOrder(Order order) {
-        //DataBaseConnection.getConnection();
-        try /*(//Connection con = DriverManager.getConnection(FULL_URL);
-             //DataBaseConnection.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO orders (price, status, notes) VALUES (?,?,?)"))*/ {
-            PreparedStatement preparedStatement = DataBaseConnection.getConnection().prepareStatement("INSERT INTO orders (price, status, notes) VALUES (?,?,?)");
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.INSERT_ORDER)) {
             setOrderParameters(order, preparedStatement);
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to insert order: ", e);
         }
         return false;
     }
 
     @Override
-    public boolean deleteOrder(int orderId) {
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM orders WHERE id = ?")) {
-            preparedStatement.setInt(1, orderId);
+    public boolean deleteOrder(Order order) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.DELETE_ORDER)) {
+            preparedStatement.setInt(1, order.getId());
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to delete order: ", e);
         }
         return false;
     }
 
     @Override
-    public boolean updateOrder(int orderId, Order order) {
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("UPDATE orders SET price=?, status=?, notes=?" +
-                     " WHERE id=?")){
+    public boolean updateOrder(Order order) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.UPDATE_ORDER)) {
             setOrderParameters(order, preparedStatement);
-            preparedStatement.setInt(4, orderId);
+            preparedStatement.setInt(4, order.getId());
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to update order: ", e);
         }
         return false;
     }
@@ -73,8 +69,8 @@ public class OrderDAOImpl implements OrderDAO {
     public Order getOrderById(int orderId) {
         Optional<Order> optionalOrder = Optional.empty();
 
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM orders WHERE id = ?");) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.GET_ORDER_BY_ID);) {
             preparedStatement.setInt(1, orderId);
             ResultSet resultSet = preparedStatement.executeQuery();
             OrderMapper orderMapper = new OrderMapper();
@@ -82,8 +78,7 @@ public class OrderDAOImpl implements OrderDAO {
                 optionalOrder = Optional.ofNullable(orderMapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to get order by id: ", e);
         }
         return optionalOrder.orElse(Order.newOrderBuilder().build());
     }
@@ -92,13 +87,12 @@ public class OrderDAOImpl implements OrderDAO {
     public List<Order> getOrdersByStatus(Order.Status tourStatus) {
         List<Order> ordersByStatus = new ArrayList<>();
 
-        try(Connection con = DriverManager.getConnection(FULL_URL);
-            PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM orders WHERE status = ? ")){
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.GET_ORDERS_BY_TOUR_STATUS)) {
             preparedStatement.setString(1, String.valueOf(tourStatus));
             getOrderListExecute(ordersByStatus, preparedStatement);
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to get order by tour status: ", e);
         }
         return ordersByStatus;
     }
@@ -107,12 +101,11 @@ public class OrderDAOImpl implements OrderDAO {
     public List<Order> getAllOrders() {
         List<Order> orders = new ArrayList<>();
 
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement(" SELECT * FROM orders")) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.FIND_ALL_ORDERS)) {
             return getOrderListExecute(orders, preparedStatement);
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to find all orders: ", e);
         }
         return orders;
     }

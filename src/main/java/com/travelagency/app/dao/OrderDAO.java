@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface OrderDAO {
     boolean insertOrder(Order order);
-    boolean deleteOrder(int orderId);
-    boolean updateOrder(int orderId, Order order);
+    boolean deleteOrder(Order order);
+    boolean updateOrder(Order order);
     Order getOrderById(int orderId);
     List<Order> getOrdersByStatus(Order.Status tourStatus);
     List<Order> getAllOrders();

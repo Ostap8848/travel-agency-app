@@ -3,24 +3,21 @@ package com.travelagency.app.dao.impl;
 import com.travelagency.app.dao.UserDAO;
 import com.travelagency.app.dao.mapper.UserMapper;
 import com.travelagency.app.model.entity.User;
+import com.travelagency.app.util.DataBaseConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 public class UserDAOImpl implements UserDAO {
     static final Logger LOG = LogManager.getLogger(UserDAOImpl.class);
 
-
-    //private static final String CONNECTION_URL = getUrl("resources\\db\\travel-agency-db.properties");
-    private static final String FULL_URL = "jdbc:mysql://localhost:3306/travel-agency-db?user=root&password=admin";
     private static UserDAOImpl instance;
 
     public static synchronized UserDAOImpl getInstance() {
@@ -30,56 +27,40 @@ public class UserDAOImpl implements UserDAO {
         return instance;
     }
 
-    private static String getUrl(String path) {
-        String resultURL = "";
-        try (InputStream fis = new FileInputStream(path)) {
-            Properties properties = new Properties();
-            properties.load(fis);
-            resultURL = properties.getProperty("connection.url");
-        } catch (IOException exception) {
-            exception.printStackTrace();
-            LOG.error(exception.getMessage());
-        }
-        return resultURL;
-    }
-
+    @Override
     public boolean insertUser(User user) {
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO users (first_name, last_name, email_login, password, instagram, " +
-                     "phone_number, role, is_blocked) VALUES (?,?,?,?,?,?,?,?)")) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.INSERT_USER)) {
             setUserParameters(user, preparedStatement);
-           return preparedStatement.executeUpdate() != 0;
+            return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to insert user: ", e);
         }
         return false;
     }
 
     @Override
-    public boolean deleteUserById(int userId) {
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("DELETE FROM users WHERE id = ?")) {
-            preparedStatement.setInt(1, userId);
+    public boolean deleteUser(User user) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.DELETE_USER)) {
+            preparedStatement.setInt(1, user.getId());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to delete user: ", e);
         }
         return false;
     }
 
     @Override
-    public boolean updateUser(int userId, User user) {
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("UPDATE users SET first_name=?, last_name=?, " +
-                     "email_login=?, password=?, instagram=?, phone_number=?, role=?, is_blocked=? WHERE id=?")){
+    public boolean updateUser(User user) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.UPDATE_USER)) {
             setUserParameters(user, preparedStatement);
-            preparedStatement.setInt(9, userId);
-                return preparedStatement.executeUpdate() != 0;
+            preparedStatement.setInt(9, user.getId());
+            return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to update user: ", e);
         }
         return false;
     }
@@ -88,8 +69,8 @@ public class UserDAOImpl implements UserDAO {
     public User getUserById(int userId) {
         Optional<User> optionalUser = Optional.empty();
 
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM users WHERE id = ?");) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.GET_USER_BY_ID);) {
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
@@ -97,8 +78,7 @@ public class UserDAOImpl implements UserDAO {
                 optionalUser = Optional.ofNullable(userMapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to get user by id: ", e);
         }
         return optionalUser.orElse(User.newUserBuilder().build());
     }
@@ -107,8 +87,8 @@ public class UserDAOImpl implements UserDAO {
     public User getUserByLogin(String login) {
         Optional<User> optionalUser = Optional.empty();
 
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM users WHERE email_login = ?")) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.GET_USER_BY_LOGIN)) {
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
@@ -116,8 +96,7 @@ public class UserDAOImpl implements UserDAO {
                 optionalUser = Optional.ofNullable(userMapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to get user by login: ", e);
         }
         return optionalUser.orElse(User.newUserBuilder().build());
     }
@@ -126,12 +105,11 @@ public class UserDAOImpl implements UserDAO {
     public List<User> findAllUsers() {
         List<User> users = new ArrayList<>();
 
-        try (Connection con = DriverManager.getConnection(FULL_URL);
-             PreparedStatement preparedStatement = con.prepareStatement(" SELECT * FROM users ")) {
+        try (Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.FIND_ALL_USERS)) {
             return getUserListExecute(users, preparedStatement);
         } catch (SQLException e) {
-            e.printStackTrace();
-            LOG.error(e.getMessage());
+            LOG.error("Failed to find all users: ", e);
         }
         return users;
     }

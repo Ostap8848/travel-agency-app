@@ -1,24 +1,10 @@
 package com.travelagency.app.model.entity;
 
-public class User {
+import com.travelagency.app.model.entity.constant.Role;
 
-    public enum Role {
-        GUEST("guest"),
+import java.io.Serializable;
 
-        MANAGER("manager"),
-
-        ADMINISTRATOR("administrator");
-
-        private final String roleName;
-
-        Role(String roleName) {
-            this.roleName = roleName;
-        }
-
-        public String getRoleName() {
-            return roleName;
-        }
-    }
+public class User implements Serializable {
 
     private int id;
     private String firstName;
@@ -29,6 +15,10 @@ public class User {
     private String phoneNumber;
     private Role role;
     private boolean isBlocked;
+
+    public static UserBuilder newUserBuilder() {
+        return new User().new UserBuilder();
+    }
 
     public int getId() {
         return id;
@@ -66,63 +56,6 @@ public class User {
         return isBlocked;
     }
 
-    public static UserBuilder newUserBuilder() {
-        return new User().new UserBuilder();
-    }
-
-    public class UserBuilder{
-         private UserBuilder() {}
-
-         public UserBuilder setId(int id) {
-             User.this.id = id;
-             return this;
-         }
-
-         public UserBuilder setFirstName(String firstName) {
-             User.this.firstName = firstName;
-             return this;
-         }
-
-         public UserBuilder setLastName(String lastName) {
-             User.this.lastName = lastName;
-             return this;
-         }
-
-         public UserBuilder setLogin(String login) {
-             User.this.login = login;
-             return this;
-         }
-
-         public UserBuilder setPassword(String password) {
-             User.this.password = password;
-             return this;
-         }
-
-         public UserBuilder setInstagram(String instagram) {
-             User.this.instagram = instagram;
-             return this;
-         }
-
-         public UserBuilder setPhoneNumber(String phoneNumber) {
-             User.this.phoneNumber = phoneNumber;
-             return this;
-         }
-
-         public UserBuilder setRole(User.Role role) {
-             User.this.role = role;
-             return this;
-         }
-
-         public UserBuilder setIsBlocked(boolean isBlocked) {
-             User.this.isBlocked = isBlocked;
-             return this;
-         }
-
-         public User build() {
-             return User.this;
-         }
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -135,5 +68,59 @@ public class User {
                 ", role=" + role +
                 ", isBlocked=" + isBlocked +
                 '}';
+    }
+
+    public class UserBuilder {
+        private UserBuilder() {
+        }
+
+        public UserBuilder setId(int id) {
+            User.this.id = id;
+            return this;
+        }
+
+        public UserBuilder setFirstName(String firstName) {
+            User.this.firstName = firstName;
+            return this;
+        }
+
+        public UserBuilder setLastName(String lastName) {
+            User.this.lastName = lastName;
+            return this;
+        }
+
+        public UserBuilder setLogin(String login) {
+            User.this.login = login;
+            return this;
+        }
+
+        public UserBuilder setPassword(String password) {
+            User.this.password = password;
+            return this;
+        }
+
+        public UserBuilder setInstagram(String instagram) {
+            User.this.instagram = instagram;
+            return this;
+        }
+
+        public UserBuilder setPhoneNumber(String phoneNumber) {
+            User.this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public UserBuilder setRole(Role role) {
+            User.this.role = role;
+            return this;
+        }
+
+        public UserBuilder setIsBlocked(boolean isBlocked) {
+            User.this.isBlocked = isBlocked;
+            return this;
+        }
+
+        public User build() {
+            return User.this;
+        }
     }
 }

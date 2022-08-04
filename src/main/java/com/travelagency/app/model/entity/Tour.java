@@ -1,50 +1,12 @@
 package com.travelagency.app.model.entity;
 
+import com.travelagency.app.model.entity.constant.Hotel;
+import com.travelagency.app.model.entity.constant.TourType;
+
 import java.math.BigDecimal;
 import java.util.List;
 
 public class Tour {
-
-    public enum TourType {
-        REST("rest"),
-
-        EXCURSION("excursion"),
-
-        SHOPPING("shopping");
-
-        private final String tourTypeName;
-
-        TourType(String tourTypeName) {
-            this.tourTypeName = tourTypeName;
-        }
-
-        public String getTourTypeName() {
-            return tourTypeName;
-        }
-    }
-
-    public enum Hotel{
-        ONE_STAR("one_star"),
-
-        TWO_STAR("two_star"),
-
-        THREE_STAR("three_star"),
-
-        FOUR_STAR("four_star"),
-
-        FIVE_STAR("five_star");
-
-        private final String hotelType;
-
-        Hotel(String hotelType) {
-            this.hotelType = hotelType;
-        }
-
-        public String getHotelType() {
-            return hotelType;
-        }
-
-    }
 
     private int id;
     private String nameUkr;
@@ -56,6 +18,10 @@ public class Tour {
     private boolean isTourHot;
     private BigDecimal discount;
     private List<Tour> tours;
+
+    public static TourBuilder newTourBuilder() {
+        return new Tour().new TourBuilder();
+    }
 
     public int getId() {
         return id;
@@ -97,8 +63,19 @@ public class Tour {
         return tours;
     }
 
-    public static TourBuilder newTourBuilder() {
-        return new Tour().new TourBuilder();
+    @Override
+    public String toString() {
+        return "Tour{" +
+                "id=" + id +
+                ", nameUkr='" + nameUkr + '\'' +
+                ", nameEng='" + nameEng + '\'' +
+                ", tourType=" + tourType +
+                ", price=" + price +
+                ", numberOfPersons=" + numberOfPersons +
+                ", hotelTypeByStars=" + hotelTypeByStars +
+                ", isTourHot=" + isTourHot +
+                ", discount=" + discount +
+                '}';
     }
 
     public class TourBuilder {
@@ -156,20 +133,5 @@ public class Tour {
         public Tour build() {
             return Tour.this;
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Tour{" +
-                "id=" + id +
-                ", nameUkr='" + nameUkr + '\'' +
-                ", nameEng='" + nameEng + '\'' +
-                ", tourType=" + tourType +
-                ", price=" + price +
-                ", numberOfPersons=" + numberOfPersons +
-                ", hotelTypeByStars=" + hotelTypeByStars +
-                ", isTourHot=" + isTourHot +
-                ", discount=" + discount +
-                '}';
     }
 }
