@@ -1,6 +1,7 @@
 package com.travelagency.app.dao.mapper;
 
 import com.travelagency.app.model.entity.Order;
+import com.travelagency.app.model.entity.constant.Status;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ public class OrderMapper implements ObjectMapper<Order> {
         Order order = Order.newOrderBuilder()
                 .setId(resultSet.getInt("id"))
                 .setPrice(resultSet.getBigDecimal("price"))
-                .setStatus(Order.Status.valueOf(resultSet.getString("status")))
+                .setStatus(Status.valueOf(resultSet.getString("status")))
                 .setNotes(resultSet.getString("notes"))
                 .build();
         orders.put(order.getId(), order);

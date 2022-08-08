@@ -51,3 +51,19 @@ L
 src/sql/travel-agency-db.sql,2\9\2997734019847779993405c24ab2e3c3ec8a4dd1
 o
 ?src/main/java/com/travelagency/app/dao/impl/ConstantsQuery.java,6\1\612e4d9a61690b76b8e142b3153348430b73392f
+v
+Fsrc/main/java/com/travelagency/app/model/entity/constant/TourType.java,8\3\83c5178151eee07c691f2c6c2557b93a0c33ebc0
+s
+Csrc/main/java/com/travelagency/app/model/entity/constant/Hotel.java,2\0\207f81def1217c838de1952118e469635e8b885c
+t
+Dsrc/main/java/com/travelagency/app/model/entity/constant/Status.java,0\4\04361f81bf32aa71d4e6c959b3a35e88300a36d8
+r
+Bsrc/main/java/com/travelagency/app/model/entity/constant/Role.java,9\0\9030c121755960e40b48271e553b583d946f09ef
+T
+$src/main/webapp/META-INF/context.xml,c\b\cbfb0d2e9b2b9fbf9d54374577c894a38643c6d0
+q
+Asrc/main/java/com/travelagency/app/util/DataSourceConnection.java,3\3\33162e46f29430c1c8df597fdeeeefe26494865e
+o
+?src/main/java/com/travelagency/app/controller/LoginServlet.java,5\3\53566c6ad69393ed391592475c148fd162525982
+g
+7src/main/java/com/travelagency/app/dao/DBException.java,e\a\ea5f21d5b27e9bcf6874bf8af3e421750edc60a1

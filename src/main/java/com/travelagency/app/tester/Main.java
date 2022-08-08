@@ -123,11 +123,11 @@ public class Main {
         //userDAO.updateUser(18, user1);
         //System.out.println("Success");
 
-        tourDAO.insertTour(tour1);
-        tourDAO.insertTour(tour2);
-        tourDAO.insertTour(tour3);
-        tourDAO.insertTour(tour);
-        tourDAO.insertTour(tour4);
+        //tourDAO.insertTour(tour1);
+        //tourDAO.insertTour(tour2);
+        //tourDAO.insertTour(tour3);
+        //tourDAO.insertTour(tour);
+        //tourDAO.insertTour(tour4);
 
         //System.out.println(userDAO.getUserById(14).toString());
         //System.out.println(userDAO.getUserByLogin("up").toString());
@@ -137,8 +137,8 @@ public class Main {
         //System.out.println(userDAO.deleteUser(2));
         //System.out.println(userDAO.findAllUsers().toString());
         //System.out.println(tourDAO.updateTour(7, tour4));
-        //System.out.println(tourDAO.findAllTours().toString());
-        System.out.println(tourDAO.getAllHotTours().toString());
+        System.out.println(tourDAO.findAllTours().toString());
+        //System.out.println(tourDAO.getAllHotTours().toString());
         //System.out.println(tourDAO.insertTour(tour4));
 
         //System.out.println(tourDAO.getTourByUkrName("Сонячна Іспанія").toString());

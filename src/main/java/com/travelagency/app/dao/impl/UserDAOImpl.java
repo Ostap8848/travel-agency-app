@@ -3,7 +3,6 @@ package com.travelagency.app.dao.impl;
 import com.travelagency.app.dao.UserDAO;
 import com.travelagency.app.dao.mapper.UserMapper;
 import com.travelagency.app.model.entity.User;
-import com.travelagency.app.util.DataBaseConnection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,10 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class implements UserDAO interface and
+ * implements all the methods needed to work with the database
+ * Use singleton pattern
+ */
 public class UserDAOImpl implements UserDAO {
     static final Logger LOG = LogManager.getLogger(UserDAOImpl.class);
 
     private static UserDAOImpl instance;
+
+    /**
+     * Constructor is private
+     */
+    private UserDAOImpl() {}
 
     public static synchronized UserDAOImpl getInstance() {
         if (instance == null) {
@@ -28,9 +37,9 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean insertUser(User user) {
-        try (Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.INSERT_USER)) {
+    public boolean insertUser(Connection connection, User user) {
+        try (//Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.INSERT_USER)) {
             setUserParameters(user, preparedStatement);
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
@@ -40,9 +49,9 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean deleteUser(User user) {
-        try (Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.DELETE_USER)) {
+    public boolean deleteUser(Connection connection, User user) {
+        try (//Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.DELETE_USER)) {
             preparedStatement.setInt(1, user.getId());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -52,9 +61,9 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean updateUser(User user) {
-        try (Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.UPDATE_USER)) {
+    public boolean updateUser(Connection connection, User user) {
+        try (//Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.UPDATE_USER)) {
             setUserParameters(user, preparedStatement);
             preparedStatement.setInt(9, user.getId());
             return preparedStatement.executeUpdate() != 0;
@@ -66,11 +75,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUserById(int userId) {
+    public User getUserById(Connection connection, int userId) {
         Optional<User> optionalUser = Optional.empty();
 
-        try (Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.GET_USER_BY_ID);) {
+        try (//Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_USER_BY_ID);) {
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
@@ -84,11 +93,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public User getUserByLogin(Connection connection, String login) {
         Optional<User> optionalUser = Optional.empty();
 
-        try (Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.GET_USER_BY_LOGIN)) {
+        try (//Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_USER_BY_LOGIN)) {
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             UserMapper userMapper = new UserMapper();
@@ -102,11 +111,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> findAllUsers() {
+    public List<User> findAllUsers(Connection connection) {
         List<User> users = new ArrayList<>();
 
-        try (Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(ConstantsQuery.FIND_ALL_USERS)) {
+        try (//Connection con = DataBaseConnection.getInstance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.FIND_ALL_USERS)) {
             return getUserListExecute(users, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to find all users: ", e);
@@ -135,4 +144,8 @@ public class UserDAOImpl implements UserDAO {
         }
         return users;
     }
+
+   /* private Connection connect() {
+        return  DataSourceConnection.getInstance().getConnection();
+    }*/
 }

@@ -1,6 +1,7 @@
 package com.travelagency.app.dao.mapper;
 
 import com.travelagency.app.model.entity.User;
+import com.travelagency.app.model.entity.constant.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ import java.util.Map;
                     .setPassword(resultSet.getString("password"))
                     .setInstagram(resultSet.getString("instagram"))
                     .setPhoneNumber(resultSet.getString("phone_number"))
-                    .setRole(User.Role.valueOf(resultSet.getString("role")))
+                    .setRole(Role.valueOf(resultSet.getString("role")))
                     .setIsBlocked(resultSet.getBoolean("is_blocked"))
                     .build();
             users.put(user.getId(), user);
