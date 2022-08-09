@@ -1,4 +1,4 @@
-package com.travelagency.app.util;
+package com.travelagency.app.connection;
 
 import java.io.FileInputStream;
 import java.io.IOException;
