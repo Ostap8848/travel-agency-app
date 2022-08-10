@@ -5,12 +5,13 @@ import com.travelagency.app.dao.impl.OrderDAOImpl;
 import com.travelagency.app.model.entity.Order;
 import com.travelagency.app.model.entity.constant.Status;
 import com.travelagency.app.connection.DataSourceConnection;
+import com.travelagency.app.web.service.OrderService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderServiceImpl {
+public class OrderServiceImpl implements OrderService {
 
     private OrderDAO orderDAO = OrderDAOImpl.getInstance();
 
@@ -20,7 +21,8 @@ public class OrderServiceImpl {
         this.orderDAO = orderDAO;
     }
 
-    public boolean insertOrder(Order order) {
+    @Override
+    public boolean insert(Order order) {
         Connection con = connect();
         orderDAO.insertOrder(con, order);
         try {
@@ -31,7 +33,8 @@ public class OrderServiceImpl {
         return true;
     }
 
-    public boolean deleteOrder(Order order) {
+    @Override
+    public boolean delete(Order order) {
         Connection con = connect();
         orderDAO.deleteOrder(con, order);
         try {
@@ -42,7 +45,8 @@ public class OrderServiceImpl {
         return true;
     }
 
-    public boolean updateOrder(Order order) {
+    @Override
+    public boolean update(Order order) {
         Connection con = connect();
         orderDAO.updateOrder(con, order);
         try {
@@ -53,6 +57,7 @@ public class OrderServiceImpl {
         return true;
     }
 
+    @Override
     public Order getOrderById(int orderId) {
         Connection con = connect();
         Order order = orderDAO.getOrderById(con, orderId);
@@ -64,6 +69,7 @@ public class OrderServiceImpl {
         return order;
     }
 
+    @Override
     public List<Order> getOrdersByStatus(Status tourStatus) {
         Connection con = connect();
         List<Order> orders = orderDAO.getOrdersByStatus(con, tourStatus);
@@ -75,6 +81,7 @@ public class OrderServiceImpl {
         return orders;
     }
 
+    @Override
     public List<Order> findAllOrders() {
         Connection con = connect();
         List<Order> orders = orderDAO.findAllOrders(con);

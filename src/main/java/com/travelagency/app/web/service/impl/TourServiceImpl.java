@@ -6,13 +6,14 @@ import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.model.entity.constant.Hotel;
 import com.travelagency.app.model.entity.constant.TourType;
 import com.travelagency.app.connection.DataSourceConnection;
+import com.travelagency.app.web.service.TourService;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TourServiceImpl {
+public class TourServiceImpl implements TourService {
 
     private TourDAO tourDAO = TourDAOImpl.getInstance();
 
@@ -22,7 +23,8 @@ public class TourServiceImpl {
         this.tourDAO = tourDAO;
     }
 
-    public boolean insertTour(Tour tour) {
+    @Override
+    public boolean insert(Tour tour) {
         Connection con = connect();
         tourDAO.insertTour(con, tour);
         try {
@@ -33,7 +35,8 @@ public class TourServiceImpl {
         return true;
     }
 
-    public boolean deleteTour(Tour tour) {
+    @Override
+    public boolean delete(Tour tour) {
         Connection con = connect();
         tourDAO.deleteTour(con, tour);
         try {
@@ -44,7 +47,8 @@ public class TourServiceImpl {
         return true;
     }
 
-    public boolean updateTour(Tour tour) {
+    @Override
+    public boolean update(Tour tour) {
         Connection con = connect();
         tourDAO.updateTour(con, tour);
         try {
@@ -55,6 +59,7 @@ public class TourServiceImpl {
         return true;
     }
 
+    @Override
     public Tour getTourById(int tourId) {
         Connection con = connect();
         Tour tour = tourDAO.getTourById(con, tourId);
@@ -66,6 +71,7 @@ public class TourServiceImpl {
         return tour;
     }
 
+    @Override
     public Tour getTourByUkrName(String nameUkr) {
         Connection con = connect();
         Tour tour = tourDAO.getTourByUkrName(con, nameUkr);
@@ -77,6 +83,7 @@ public class TourServiceImpl {
         return tour;
     }
 
+    @Override
     public Tour getTourByEngName(String nameEng) {
         Connection con = connect();
         Tour tour = tourDAO.getTourByEngName(con, nameEng);
@@ -88,6 +95,7 @@ public class TourServiceImpl {
         return tour;
     }
 
+    @Override
     public List<Tour> getToursByType(TourType tourType) {
         Connection con = connect();
         List<Tour> tours = tourDAO.getToursByType(con, tourType);
@@ -99,6 +107,7 @@ public class TourServiceImpl {
         return tours;
     }
 
+    @Override
     public List<Tour> getToursByPrice(BigDecimal price) {
         Connection con = connect();
         List<Tour> tours = tourDAO.getToursByPrice(con, price);
@@ -110,6 +119,7 @@ public class TourServiceImpl {
         return tours;
     }
 
+    @Override
     public List<Tour> getToursByNumberOfPersons(int numberOfPersons) {
         Connection con = connect();
         List<Tour> tours = tourDAO.getToursByNumberOfPersons(con, numberOfPersons);
@@ -121,6 +131,7 @@ public class TourServiceImpl {
         return tours;
     }
 
+    @Override
     public List<Tour> getToursByHotelType(Hotel hotelType) {
         Connection con = connect();
         List<Tour> tours = tourDAO.getToursByHotelType(con, hotelType);
@@ -132,6 +143,7 @@ public class TourServiceImpl {
         return tours;
     }
 
+    @Override
     public List<Tour> getAllHotTours() {
         Connection con = connect();
         List<Tour> tours = tourDAO.getAllHotTours(con);
@@ -143,6 +155,7 @@ public class TourServiceImpl {
         return tours;
     }
 
+    @Override
     public List<Tour> findAllTours() {
         Connection con = connect();
         List<Tour> tours = tourDAO.findAllTours(con);

@@ -4,12 +4,13 @@ import com.travelagency.app.dao.UserDAO;
 import com.travelagency.app.dao.impl.UserDAOImpl;
 import com.travelagency.app.model.entity.User;
 import com.travelagency.app.connection.DataSourceConnection;
+import com.travelagency.app.web.service.UserService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO = UserDAOImpl.getInstance();
 
@@ -19,8 +20,8 @@ public class UserServiceImpl {
         this.userDAO = userDAO;
     }
 
-
-    public boolean insertUser(User user) {
+    @Override
+    public boolean insert(User user) {
         Connection con = connect();
         userDAO.insertUser(con, user);
         try {
@@ -31,7 +32,8 @@ public class UserServiceImpl {
         return true;
     }
 
-    public boolean deleteUser(User user) {
+    @Override
+    public boolean delete(User user) {
         Connection con = connect();
         userDAO.deleteUser(con, user);
         try {
@@ -42,7 +44,8 @@ public class UserServiceImpl {
         return true;
     }
 
-    public boolean updateUser(User user) {
+    @Override
+    public boolean update(User user) {
         Connection con = connect();
         userDAO.updateUser(con, user);
         try {
@@ -53,6 +56,7 @@ public class UserServiceImpl {
         return true;
     }
 
+    @Override
     public User getUserById(int userId) {
         Connection con = connect();
         User user = userDAO.getUserById(con, userId);
@@ -64,6 +68,7 @@ public class UserServiceImpl {
         return user;
     }
 
+    @Override
     public User getUserByLogin(String login) {
         Connection con = connect();
         User user = userDAO.getUserByLogin(con, login);
@@ -75,6 +80,7 @@ public class UserServiceImpl {
         return user;
     }
 
+    @Override
     public List<User> findAllUsers() {
         Connection con = connect();
         List<User> users = userDAO.findAllUsers(con);
@@ -90,4 +96,3 @@ public class UserServiceImpl {
         return DataSourceConnection.getInstance().getConnection();
     }
 }
-//
