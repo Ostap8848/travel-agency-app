@@ -1,4 +1,4 @@
-package com.travelagency.app.command;
+package com.travelagency.app.web.command;
 
 import java.util.HashMap;
 import java.util.Map;

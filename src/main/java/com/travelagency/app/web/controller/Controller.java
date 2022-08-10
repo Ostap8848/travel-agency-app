@@ -1,9 +1,8 @@
-package com.travelagency.app.controller;
+package com.travelagency.app.web.controller;
 
-import com.travelagency.app.command.ActionCommand;
-import com.travelagency.app.command.CommandContainer;
-import com.travelagency.app.command.exception.CommandException;
-import com.travelagency.app.dao.impl.UserDAOImpl;
+import com.travelagency.app.web.command.ActionCommand;
+import com.travelagency.app.web.command.CommandContainer;
+import com.travelagency.app.web.command.exception.CommandException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

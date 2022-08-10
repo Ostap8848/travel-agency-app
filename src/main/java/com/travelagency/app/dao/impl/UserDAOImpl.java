@@ -74,6 +74,7 @@ public class UserDAOImpl implements UserDAO {
         return false;
     }
 
+
     @Override
     public User getUserById(Connection connection, int userId) {
         Optional<User> optionalUser = Optional.empty();

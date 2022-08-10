@@ -1,4 +1,4 @@
-package com.travelagency.app.command.exception;
+package com.travelagency.app.web.command.exception;
 
 public class CommandException extends Exception {
     public CommandException() {

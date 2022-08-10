@@ -1,4 +1,4 @@
-package com.travelagency.app.model.service;
+package com.travelagency.app.web.service.impl;
 
 import com.travelagency.app.dao.TourDAO;
 import com.travelagency.app.dao.impl.TourDAOImpl;
@@ -12,9 +12,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TourService {
+public class TourServiceImpl {
 
-    private final TourDAO tourDAO = TourDAOImpl.getInstance();
+    private TourDAO tourDAO = TourDAOImpl.getInstance();
+
+    public TourServiceImpl() {}
+
+    public TourServiceImpl(TourDAO tourDAO) {
+        this.tourDAO = tourDAO;
+    }
 
     public boolean insertTour(Tour tour) {
         Connection con = connect();

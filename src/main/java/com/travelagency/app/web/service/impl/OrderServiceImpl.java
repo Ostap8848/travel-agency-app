@@ -1,22 +1,28 @@
-package com.travelagency.app.model.service;
+package com.travelagency.app.web.service.impl;
 
-import com.travelagency.app.dao.UserDAO;
-import com.travelagency.app.dao.impl.UserDAOImpl;
-import com.travelagency.app.model.entity.User;
+import com.travelagency.app.dao.OrderDAO;
+import com.travelagency.app.dao.impl.OrderDAOImpl;
+import com.travelagency.app.model.entity.Order;
+import com.travelagency.app.model.entity.constant.Status;
 import com.travelagency.app.connection.DataSourceConnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserService {
+public class OrderServiceImpl {
 
-    private final UserDAO userDAO = UserDAOImpl.getInstance();
+    private OrderDAO orderDAO = OrderDAOImpl.getInstance();
 
+    public OrderServiceImpl() {}
 
-    public boolean insertUser(User user) {
+    public OrderServiceImpl(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
+    }
+
+    public boolean insertOrder(Order order) {
         Connection con = connect();
-        userDAO.insertUser(con, user);
+        orderDAO.insertOrder(con, order);
         try {
             con.close();
         } catch (SQLException e) {
@@ -25,9 +31,9 @@ public class UserService {
         return true;
     }
 
-    public boolean deleteUser(User user) {
+    public boolean deleteOrder(Order order) {
         Connection con = connect();
-        userDAO.deleteUser(con, user);
+        orderDAO.deleteOrder(con, order);
         try {
             con.close();
         } catch (SQLException e) {
@@ -36,9 +42,9 @@ public class UserService {
         return true;
     }
 
-    public boolean updateUser(User user) {
+    public boolean updateOrder(Order order) {
         Connection con = connect();
-        userDAO.updateUser(con, user);
+        orderDAO.updateOrder(con, order);
         try {
             con.close();
         } catch (SQLException e) {
@@ -47,40 +53,40 @@ public class UserService {
         return true;
     }
 
-    public User getUserById(int userId) {
+    public Order getOrderById(int orderId) {
         Connection con = connect();
-        User user = userDAO.getUserById(con, userId);
+        Order order = orderDAO.getOrderById(con, orderId);
         try {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return user;
+        return order;
     }
 
-    public User getUserByLogin(String login) {
+    public List<Order> getOrdersByStatus(Status tourStatus) {
         Connection con = connect();
-        User user = userDAO.getUserByLogin(con, login);
+        List<Order> orders = orderDAO.getOrdersByStatus(con, tourStatus);
         try {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return user;
+        return orders;
     }
 
-    public List<User> findAllUsers() {
+    public List<Order> findAllOrders() {
         Connection con = connect();
-        List<User> users = userDAO.findAllUsers(con);
+        List<Order> orders = orderDAO.findAllOrders(con);
         try {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return orders;
     }
 
     private Connection connect() {
-        return DataSourceConnection.getInstance().getConnection();
+        return  DataSourceConnection.getInstance().getConnection();
     }
 }
