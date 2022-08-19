@@ -1,22 +1,22 @@
 package com.travelagency.app.dao;
 
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.model.entity.Order;
 import com.travelagency.app.model.entity.constant.Status;
 
-import java.sql.Connection;
 import java.util.List;
 
 
 public interface OrderDAO {
-    boolean insertOrder(Connection connection, Order order);
+    boolean insertOrder(Order order) throws DBException;
 
-    boolean deleteOrder(Connection connection, Order order);
+    boolean deleteOrder(Order order) throws DBException;
 
-    boolean updateOrder(Connection connection, Order order);
+    boolean updateOrder(Order order) throws DBException;
 
-    Order getOrderById(Connection connection, int orderId);
+    Order getOrderById(int orderId) throws DBException;
 
-    List<Order> getOrdersByStatus(Connection connection, Status tourStatus);
+    List<Order> getOrdersByStatus(Status tourStatus) throws DBException;
 
-    List<Order> findAllOrders(Connection connection);
+    List<Order> findAllOrders() throws DBException;
 }

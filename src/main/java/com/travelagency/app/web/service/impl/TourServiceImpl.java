@@ -1,173 +1,133 @@
 package com.travelagency.app.web.service.impl;
 
 import com.travelagency.app.dao.TourDAO;
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.impl.TourDAOImpl;
 import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.model.entity.constant.Hotel;
 import com.travelagency.app.model.entity.constant.TourType;
-import com.travelagency.app.connection.DataSourceConnection;
 import com.travelagency.app.web.service.TourService;
+import com.travelagency.app.web.service.exception.ServiceException;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 public class TourServiceImpl implements TourService {
 
     private TourDAO tourDAO = TourDAOImpl.getInstance();
 
-    public TourServiceImpl() {}
+    public TourServiceImpl() {
+    }
 
     public TourServiceImpl(TourDAO tourDAO) {
         this.tourDAO = tourDAO;
     }
 
     @Override
-    public boolean insert(Tour tour) {
-        Connection con = connect();
-        tourDAO.insertTour(con, tour);
+    public boolean insert(Tour tour) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.insertTour(tour);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return true;
     }
 
     @Override
-    public boolean delete(Tour tour) {
-        Connection con = connect();
-        tourDAO.deleteTour(con, tour);
+    public boolean delete(Tour tour) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.deleteTour(tour);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return true;
     }
 
     @Override
-    public boolean update(Tour tour) {
-        Connection con = connect();
-        tourDAO.updateTour(con, tour);
+    public boolean update(Tour tour) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.updateTour(tour);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return true;
     }
 
     @Override
-    public Tour getTourById(int tourId) {
-        Connection con = connect();
-        Tour tour = tourDAO.getTourById(con, tourId);
+    public Tour getTourById(int tourId) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getTourById(tourId);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tour;
     }
 
     @Override
-    public Tour getTourByUkrName(String nameUkr) {
-        Connection con = connect();
-        Tour tour = tourDAO.getTourByUkrName(con, nameUkr);
+    public Tour getTourByUkrName(String nameUkr) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getTourByUkrName(nameUkr);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tour;
     }
 
     @Override
-    public Tour getTourByEngName(String nameEng) {
-        Connection con = connect();
-        Tour tour = tourDAO.getTourByEngName(con, nameEng);
+    public Tour getTourByEngName(String nameEng) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getTourByEngName(nameEng);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tour;
     }
 
     @Override
-    public List<Tour> getToursByType(TourType tourType) {
-        Connection con = connect();
-        List<Tour> tours = tourDAO.getToursByType(con, tourType);
+    public List<Tour> getToursByType(TourType tourType) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getToursByType(tourType);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tours;
     }
 
     @Override
-    public List<Tour> getToursByPrice(BigDecimal price) {
-        Connection con = connect();
-        List<Tour> tours = tourDAO.getToursByPrice(con, price);
+    public List<Tour> getToursByPrice(BigDecimal price) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getToursByPrice(price);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tours;
     }
 
     @Override
-    public List<Tour> getToursByNumberOfPersons(int numberOfPersons) {
-        Connection con = connect();
-        List<Tour> tours = tourDAO.getToursByNumberOfPersons(con, numberOfPersons);
+    public List<Tour> getToursByNumberOfPersons(int numberOfPersons) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getToursByNumberOfPersons(numberOfPersons);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tours;
     }
 
     @Override
-    public List<Tour> getToursByHotelType(Hotel hotelType) {
-        Connection con = connect();
-        List<Tour> tours = tourDAO.getToursByHotelType(con, hotelType);
+    public List<Tour> getToursByHotelType(Hotel hotelType) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getToursByHotelType(hotelType);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tours;
     }
 
     @Override
-    public List<Tour> getAllHotTours() {
-        Connection con = connect();
-        List<Tour> tours = tourDAO.getAllHotTours(con);
+    public List<Tour> getAllHotTours() throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.getAllHotTours();
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tours;
     }
 
     @Override
-    public List<Tour> findAllTours() {
-        Connection con = connect();
-        List<Tour> tours = tourDAO.findAllTours(con);
+    public List<Tour> findAllTours(int offset) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return tourDAO.findAllTours(offset);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return tours;
-    }
-
-    private Connection connect() {
-        return  DataSourceConnection.getInstance().getConnection();
     }
 }

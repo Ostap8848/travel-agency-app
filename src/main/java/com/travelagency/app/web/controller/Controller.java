@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 //http://localhost:8080/travel_agency_app/home?command
-@WebServlet(name = "controller", value = "home")
+@WebServlet(name = "controller", value = "/home")
 public class Controller extends HttpServlet {
 
     static final Logger LOG = LogManager.getLogger(Controller.class);
@@ -28,29 +28,29 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String address = null;
+        String url = null;
         try {
-            address = getAddress(req,resp);
+            url = getUrl(req,resp);
         } catch (CommandException e) {
             LOG.debug("Error: {}", e);
             resp.sendError(500, "Can`t process the command");
         }
-        req.getRequestDispatcher(address).forward(req, resp);
+        req.getRequestDispatcher(url).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String address = null;
+        String url = null;
         try {
-            address = getAddress(req, resp);
+            url = getUrl(req, resp);
         } catch (CommandException e) {
             LOG.debug("Error: {}", e);
             resp.sendError(500, "Can`t process the command");
         }
-        resp.sendRedirect(address);
+        resp.sendRedirect(url);
     }
 
-    public String getAddress(HttpServletRequest req, HttpServletResponse resp) throws CommandException {
+    public String getUrl(HttpServletRequest req, HttpServletResponse resp) throws CommandException {
         String commandName = req.getParameter("command");
         ActionCommand actionCommand = CommandContainer.getCommand(commandName);
         return actionCommand.execute(req, resp);

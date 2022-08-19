@@ -3,6 +3,8 @@ package com.travelagency.app.model.entity.constant;
 public enum Role {
     GUEST("guest"),
 
+    CLIENT("client"),
+
     MANAGER("manager"),
 
     ADMINISTRATOR("administrator");

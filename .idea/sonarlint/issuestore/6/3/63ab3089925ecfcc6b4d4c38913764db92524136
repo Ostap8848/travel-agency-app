@@ -1,0 +1,27 @@
+
+Y
+java:S2629:"7Use the built-in formatting to construct this argument.(‰ƒ­ÿÿÿÿÿ8è¯¶ê¨0
+Y
+java:S2629>"7Use the built-in formatting to construct this argument.(ƒÆıúÿÿÿÿ8˜Ï¶ê¨0
+T
+java:S2629B"7Use the built-in formatting to construct this argument.(—±€À8Ûô¶ê¨0
+c
+java:S3457:"AFormat specifiers should be used instead of string concatenation.(‰ƒ­ÿÿÿÿÿ8è¯¶ê¨0
+T
+java:S26291"7Use the built-in formatting to construct this argument.(óĞ˜õ8áĞå¢¨0
+†
+java:S1192:"dDefine a constant instead of duplicating this literal "context.setAttribute 'addService': " 3 times.(‰ƒ­ÿÿÿÿÿ8Ûô¶ê¨0
+c
+java:S3457>"AFormat specifiers should be used instead of string concatenation.(ƒÆıúÿÿÿÿ8˜Ï¶ê¨0
+Y
+java:S26295"7Use the built-in formatting to construct this argument.(ùœÍüÿÿÿÿ8³†°ê¨0
+T
+java:S26293"7Use the built-in formatting to construct this argument.(öå—8ÈÏ¯ê¨0
+c
+java:S34575"AFormat specifiers should be used instead of string concatenation.(ùœÍüÿÿÿÿ8³†°ê¨0
+^
+java:S3457B"AFormat specifiers should be used instead of string concatenation.(—±€À8Ûô¶ê¨0
+^
+java:S34573"AFormat specifiers should be used instead of string concatenation.(öå—8ÈÏ¯ê¨0
+^
+java:S34571"AFormat specifiers should be used instead of string concatenation.(óĞ˜õ8áĞå¢¨0

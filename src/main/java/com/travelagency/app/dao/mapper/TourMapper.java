@@ -23,6 +23,7 @@ public class TourMapper implements ObjectMapper<Tour> {
                 .setHotelTypeByStars(Hotel.valueOf(resultSet.getString("hotel_type")))
                 .setIsTourHot(resultSet.getBoolean("is_tour_hot"))
                 .setDiscount(resultSet.getBigDecimal("discount"))
+                .setDescription(resultSet.getString("description"))
                 .build();
         tours.put(tour.getId(), tour);
         tour = this.makeUnique(tours, tour);

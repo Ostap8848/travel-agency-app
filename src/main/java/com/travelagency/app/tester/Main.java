@@ -1,5 +1,6 @@
 package com.travelagency.app.tester;
 
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.impl.OrderDAOImpl;
 import com.travelagency.app.dao.impl.TourDAOImpl;
 import com.travelagency.app.dao.impl.UserDAOImpl;
@@ -14,7 +15,7 @@ import com.travelagency.app.model.entity.constant.TourType;
 import java.math.BigDecimal;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DBException {
         UserDAOImpl userDAO = UserDAOImpl.getInstance();
         TourDAOImpl tourDAO = TourDAOImpl.getInstance();
         OrderDAOImpl orderDAO = OrderDAOImpl.getInstance();
@@ -57,10 +58,11 @@ public class Main {
                 .setNameEng("Sunny Spain")
                 .setTourType(TourType.REST)
                 .setPrice(BigDecimal.valueOf(899.99))
-                .setNumberOfPersons(2)
+                .setNumberOfPersons(6)
                 .setHotelTypeByStars(Hotel.FIVE_STAR)
                 .setIsTourHot(true)
-                .setDiscount(BigDecimal.valueOf(25.00))
+                .setDiscount(BigDecimal.valueOf(10.00))
+                .setDescription("Start date - '18.08.22', finish date - '18.09.22'")
                 .build();
 
         Tour tour1 = Tour.newTourBuilder()
@@ -135,9 +137,9 @@ public class Main {
         //System.out.println(userDAO.deleteUserById(18));
         //System.out.println(userDAO.findAllUsers().toString());
         //System.out.println(userDAO.deleteUser(2));
-        //System.out.println(userDAO.findAllUsers().toString());
+        System.out.println(userDAO.findAllUsers().toString());
         //System.out.println(tourDAO.updateTour(7, tour4));
-        System.out.println(tourDAO.findAllTours().toString());
+        //System.out.println(tourDAO.findAllTours().toString());
         //System.out.println(tourDAO.getAllHotTours().toString());
         //System.out.println(tourDAO.insertTour(tour4));
 

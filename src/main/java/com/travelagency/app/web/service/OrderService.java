@@ -2,20 +2,21 @@ package com.travelagency.app.web.service;
 
 import com.travelagency.app.model.entity.Order;
 import com.travelagency.app.model.entity.constant.Status;
+import com.travelagency.app.web.service.exception.ServiceException;
 
 import java.util.List;
 
 public interface OrderService {
 
-    boolean insert(Order order);
+    boolean insert(Order order) throws ServiceException;
 
-    boolean delete(Order order);
+    boolean delete(Order order) throws ServiceException;
 
-    boolean update(Order order);
+    boolean update(Order order) throws ServiceException;
 
-    Order getOrderById(int orderId);
+    Order getOrderById(int orderId) throws ServiceException;
 
-    List<Order> getOrdersByStatus(Status tourStatus);
+    List<Order> getOrdersByStatus(Status tourStatus) throws ServiceException;
 
-    List<Order> findAllOrders();
+    List<Order> findAllOrders() throws ServiceException;
 }

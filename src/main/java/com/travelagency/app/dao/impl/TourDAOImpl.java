@@ -1,6 +1,8 @@
 package com.travelagency.app.dao.impl;
 
+import com.travelagency.app.connection.DataSourceConnection;
 import com.travelagency.app.dao.TourDAO;
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.mapper.TourMapper;
 import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.model.entity.constant.Hotel;
@@ -20,7 +22,7 @@ import java.util.Optional;
 /**
  * Class implements TourDAO interface and
  * implements all the methods needed to work with the database
- * Use singleton pattern
+ * Uses Singleton pattern
  */
 public class TourDAOImpl implements TourDAO {
     static final Logger LOG = LogManager.getLogger(TourDAOImpl.class);
@@ -30,7 +32,8 @@ public class TourDAOImpl implements TourDAO {
     /**
      * Constructor is private
      */
-    private TourDAOImpl() {}
+    private TourDAOImpl() {
+    }
 
     public static synchronized TourDAOImpl getInstance() {
         if (instance == null) {
@@ -40,48 +43,44 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public boolean insertTour(Connection connection, Tour tour) {
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.INSERT_TOUR)) {
+    public boolean insertTour(Tour tour) throws DBException {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.INSERT_TOUR)) {
             setTourParameters(tour, preparedStatement);
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             LOG.error("Failed to insert tour: ", e);
+            throw new DBException(e);
         }
-        return false;
     }
 
     @Override
-    public boolean deleteTour(Connection connection, Tour tour) {
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.DELETE_TOUR)) {
+    public boolean deleteTour(Tour tour) throws DBException {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.DELETE_TOUR)) {
             preparedStatement.setInt(1, tour.getId());
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             LOG.error("Failed to delete tour: ", e);
+            throw new DBException(e);
         }
-        return false;
     }
 
     @Override
-    public boolean updateTour(Connection connection, Tour tour) {
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.UPDATE_TOUR)) {
+    public boolean updateTour(Tour tour) throws DBException {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.UPDATE_TOUR)) {
             setTourParameters(tour, preparedStatement);
-            preparedStatement.setInt(9, tour.getId());
+            preparedStatement.setInt(10, tour.getId());
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             LOG.error("Failed to update tour: ", e);
+            throw new DBException(e);
         }
-        return false;
     }
 
     @Override
-    public Tour getTourById(Connection connection, int tourId) {
+    public Tour getTourById(int tourId) throws DBException {
         Optional<Tour> optionalTour = Optional.empty();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_TOUR_BY_ID)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOUR_BY_ID)) {
             preparedStatement.setInt(1, tourId);
             ResultSet resultSet = preparedStatement.executeQuery();
             TourMapper tourMapper = new TourMapper();
@@ -90,16 +89,16 @@ public class TourDAOImpl implements TourDAO {
             }
         } catch (SQLException e) {
             LOG.error("Failed to get tour by id: ", e);
+            throw new DBException(e);
         }
         return optionalTour.orElse(Tour.newTourBuilder().build());
     }
 
     @Override
-    public Tour getTourByUkrName(Connection connection, String nameUkr) {
+    public Tour getTourByUkrName(String nameUkr) throws DBException {
         Optional<Tour> optionalTour = Optional.empty();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_TOUR_BY_UKR_NAME)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOUR_BY_UKR_NAME)) {
             preparedStatement.setString(1, nameUkr);
             ResultSet resultSet = preparedStatement.executeQuery();
             TourMapper tourMapper = new TourMapper();
@@ -108,16 +107,16 @@ public class TourDAOImpl implements TourDAO {
             }
         } catch (SQLException e) {
             LOG.error("Failed to get tour by ukr name: ", e);
+            throw new DBException(e);
         }
         return optionalTour.orElse(Tour.newTourBuilder().build());
     }
 
     @Override
-    public Tour getTourByEngName(Connection connection, String nameEng) {
+    public Tour getTourByEngName(String nameEng) throws DBException {
         Optional<Tour> optionalTour = Optional.empty();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_TOUR_BY_ENG_NAME)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOUR_BY_ENG_NAME)) {
             preparedStatement.setString(1, nameEng);
             ResultSet resultSet = preparedStatement.executeQuery();
             TourMapper tourMapper = new TourMapper();
@@ -126,94 +125,93 @@ public class TourDAOImpl implements TourDAO {
             }
         } catch (SQLException e) {
             LOG.error("Failed to get tour by eng name: ", e);
+            throw new DBException(e);
         }
         return optionalTour.orElse(Tour.newTourBuilder().build());
     }
 
     @Override
-    public List<Tour> getToursByType(Connection connection, TourType tourType) {
+    public List<Tour> getToursByType(TourType tourType) throws DBException {
         List<Tour> toursByType = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_TOURS_BY_TYPE)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_TYPE)) {
             preparedStatement.setString(1, String.valueOf(tourType));
             getTourListExecute(toursByType, preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
             LOG.error("Failed to get tours by type: ", e);
+            throw new DBException(e);
         }
         return toursByType;
     }
 
     @Override
-    public List<Tour> getToursByPrice(Connection connection, BigDecimal price) {
+    public List<Tour> getToursByPrice(BigDecimal price) throws DBException {
         List<Tour> toursByPrice = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_TOURS_BY_PRICE)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_PRICE)) {
             preparedStatement.setBigDecimal(1, price);
             getTourListExecute(toursByPrice, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get tours by price: ", e);
+            throw new DBException(e);
         }
         return toursByPrice;
     }
 
     @Override
-    public List<Tour> getToursByNumberOfPersons(Connection connection, int numberOfPersons) {
+    public List<Tour> getToursByNumberOfPersons(int numberOfPersons) throws DBException {
         List<Tour> toursByNumberOfPersons = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_TOURS_BY_NUMBER_OF_PERSONS)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_NUMBER_OF_PERSONS)) {
             preparedStatement.setInt(1, numberOfPersons);
             getTourListExecute(toursByNumberOfPersons, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get tours by number of persons: ", e);
+            throw new DBException(e);
         }
         return toursByNumberOfPersons;
     }
 
     @Override
-    public List<Tour> getToursByHotelType(Connection connection, Hotel hotelType) {
+    public List<Tour> getToursByHotelType(Hotel hotelType) throws DBException {
         List<Tour> toursByHotelType = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_TOURS_BY_HOTEL_TYPE)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_HOTEL_TYPE)) {
             preparedStatement.setString(1, String.valueOf(hotelType));
             getTourListExecute(toursByHotelType, preparedStatement);
         } catch (SQLException e) {
-            e.printStackTrace();
             LOG.error("Failed to get tours by hotel type: ", e);
+            throw new DBException(e);
         }
         return toursByHotelType;
     }
 
     @Override
-    public List<Tour> getAllHotTours(Connection connection) {
+    public List<Tour> getAllHotTours() throws DBException {
         List<Tour> hotTours = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_ALL_HOT_TOURS)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_ALL_HOT_TOURS)) {
             preparedStatement.setBoolean(1, true);
             getTourListExecute(hotTours, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get all hot tours: ", e);
+            throw new DBException(e);
         }
         return hotTours;
     }
 
     @Override
-    public List<Tour> findAllTours(Connection connection) {
+    public List<Tour> findAllTours(int offset) throws DBException {
         List<Tour> tours = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             //Connection con = DataSourceConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.FIND_ALL_TOURS)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.FIND_ALL_TOURS)) {
+            preparedStatement.setInt(1, offset);
             return getTourListExecute(tours, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to find all tours: ", e);
+            throw new DBException(e);
         }
-        return tours;
     }
 
     private void setTourParameters(Tour tour, PreparedStatement preparedStatement) throws SQLException {
@@ -225,13 +223,12 @@ public class TourDAOImpl implements TourDAO {
         preparedStatement.setString(6, tour.getHotelTypeByStars().getHotelType());
         preparedStatement.setBoolean(7, tour.getIsTourHot());
         preparedStatement.setBigDecimal(8, tour.getDiscount());
+        preparedStatement.setString(9, tour.getDescription());
     }
 
     private List<Tour> getTourListExecute(List<Tour> tours, PreparedStatement preparedStatement) throws SQLException {
         ResultSet resultSet1 = preparedStatement.executeQuery();
-
         TourMapper tourMapper = new TourMapper();
-
         while (resultSet1.next()) {
             Optional<Tour> tour = Optional.
                     ofNullable(tourMapper.extractFromResultSet(resultSet1));
@@ -239,4 +236,11 @@ public class TourDAOImpl implements TourDAO {
         }
         return tours;
     }
+
+    private Connection connect() {
+        return DataSourceConnection.getInstance().getConnection();
+    }
+    /*private Connection connect() {
+        return DataBaseConnection.getInstance().getConnection();
+    }*/
 }

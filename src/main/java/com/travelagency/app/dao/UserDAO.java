@@ -1,20 +1,20 @@
 package com.travelagency.app.dao;
 
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.model.entity.User;
 
-import java.sql.Connection;
 import java.util.List;
 
 public interface UserDAO {
-    boolean insertUser(Connection connection, User user);
+    boolean insertUser(User user) throws DBException;
 
-    boolean deleteUser(Connection connection, User user);
+    boolean deleteUser(User user) throws DBException;
 
-    boolean updateUser(Connection connection, User user);
+    boolean updateUser(User user) throws DBException;
 
-    User getUserById(Connection connection, int userId);
+    User getUserById(int userId) throws DBException;
 
-    User getUserByLogin(Connection connection, String login);
+    User getUserByLogin(String login) throws DBException;
 
-    List<User> findAllUsers(Connection connection);
+    List<User> findAllUsers() throws DBException;
 }

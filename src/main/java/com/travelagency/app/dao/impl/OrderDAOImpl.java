@@ -1,5 +1,7 @@
 package com.travelagency.app.dao.impl;
 
+import com.travelagency.app.connection.DataSourceConnection;
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.OrderDAO;
 import com.travelagency.app.dao.mapper.OrderMapper;
 import com.travelagency.app.model.entity.Order;
@@ -28,7 +30,8 @@ public class OrderDAOImpl implements OrderDAO {
     /**
      * Constructor is private
      */
-    private OrderDAOImpl() {}
+    private OrderDAOImpl() {
+    }
 
     public static synchronized OrderDAOImpl getInstance() {
         if (instance == null) {
@@ -38,48 +41,44 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean insertOrder(Connection connection, Order order) {
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.INSERT_ORDER)) {
+    public boolean insertOrder(Order order) throws DBException {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.INSERT_ORDER)) {
             setOrderParameters(order, preparedStatement);
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             LOG.error("Failed to insert order: ", e);
+            throw new DBException(e);
         }
-        return false;
     }
 
     @Override
-    public boolean deleteOrder(Connection connection, Order order) {
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.DELETE_ORDER)) {
+    public boolean deleteOrder(Order order) throws DBException {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.DELETE_ORDER)) {
             preparedStatement.setInt(1, order.getId());
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             LOG.error("Failed to delete order: ", e);
+            throw new DBException(e);
         }
-        return false;
     }
 
     @Override
-    public boolean updateOrder(Connection connection, Order order) {
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.UPDATE_ORDER)) {
+    public boolean updateOrder(Order order) throws DBException {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.UPDATE_ORDER)) {
             setOrderParameters(order, preparedStatement);
             preparedStatement.setInt(4, order.getId());
             return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             LOG.error("Failed to update order: ", e);
+            throw new DBException(e);
         }
-        return false;
     }
 
     @Override
-    public Order getOrderById(Connection connection, int orderId) {
+    public Order getOrderById(int orderId) throws DBException {
         Optional<Order> optionalOrder = Optional.empty();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_ORDER_BY_ID);) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_ORDER_BY_ID);) {
             preparedStatement.setInt(1, orderId);
             ResultSet resultSet = preparedStatement.executeQuery();
             OrderMapper orderMapper = new OrderMapper();
@@ -88,35 +87,35 @@ public class OrderDAOImpl implements OrderDAO {
             }
         } catch (SQLException e) {
             LOG.error("Failed to get order by id: ", e);
+            throw new DBException(e);
         }
         return optionalOrder.orElse(Order.newOrderBuilder().build());
     }
 
     @Override
-    public List<Order> getOrdersByStatus(Connection connection, Status tourStatus) {
+    public List<Order> getOrdersByStatus(Status tourStatus) throws DBException {
         List<Order> ordersByStatus = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.GET_ORDERS_BY_TOUR_STATUS)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_ORDERS_BY_TOUR_STATUS)) {
             preparedStatement.setString(1, String.valueOf(tourStatus));
             getOrderListExecute(ordersByStatus, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get order by tour status: ", e);
+            throw new DBException(e);
         }
         return ordersByStatus;
     }
 
     @Override
-    public List<Order> findAllOrders(Connection connection) {
+    public List<Order> findAllOrders() throws DBException {
         List<Order> orders = new ArrayList<>();
 
-        try (//Connection con = DataBaseConnection.getInstance().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ConstantsQuery.FIND_ALL_ORDERS)) {
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.FIND_ALL_ORDERS)) {
             return getOrderListExecute(orders, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to find all orders: ", e);
+            throw new DBException(e);
         }
-        return orders;
     }
 
     private void setOrderParameters(Order order, PreparedStatement preparedStatement) throws SQLException {
@@ -136,5 +135,9 @@ public class OrderDAOImpl implements OrderDAO {
             order.ifPresent(orders::add);
         }
         return orders;
+    }
+
+    private Connection connect() {
+        return DataSourceConnection.getInstance().getConnection();
     }
 }

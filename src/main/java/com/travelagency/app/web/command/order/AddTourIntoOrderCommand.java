@@ -9,6 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AddTourIntoOrderCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        return null;
+        return "makeOrder.jsp";
     }
 }

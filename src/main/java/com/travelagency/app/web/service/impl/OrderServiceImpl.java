@@ -1,99 +1,77 @@
 package com.travelagency.app.web.service.impl;
 
 import com.travelagency.app.dao.OrderDAO;
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.impl.OrderDAOImpl;
 import com.travelagency.app.model.entity.Order;
 import com.travelagency.app.model.entity.constant.Status;
-import com.travelagency.app.connection.DataSourceConnection;
 import com.travelagency.app.web.service.OrderService;
+import com.travelagency.app.web.service.exception.ServiceException;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
 
     private OrderDAO orderDAO = OrderDAOImpl.getInstance();
 
-    public OrderServiceImpl() {}
+    public OrderServiceImpl() {
+    }
 
     public OrderServiceImpl(OrderDAO orderDAO) {
         this.orderDAO = orderDAO;
     }
 
     @Override
-    public boolean insert(Order order) {
-        Connection con = connect();
-        orderDAO.insertOrder(con, order);
+    public boolean insert(Order order) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return orderDAO.insertOrder(order);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return true;
     }
 
     @Override
-    public boolean delete(Order order) {
-        Connection con = connect();
-        orderDAO.deleteOrder(con, order);
+    public boolean delete(Order order) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return orderDAO.deleteOrder(order);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return true;
     }
 
     @Override
-    public boolean update(Order order) {
-        Connection con = connect();
-        orderDAO.updateOrder(con, order);
+    public boolean update(Order order) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return orderDAO.updateOrder(order);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return true;
     }
 
     @Override
-    public Order getOrderById(int orderId) {
-        Connection con = connect();
-        Order order = orderDAO.getOrderById(con, orderId);
+    public Order getOrderById(int orderId) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return orderDAO.getOrderById(orderId);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return order;
     }
 
     @Override
-    public List<Order> getOrdersByStatus(Status tourStatus) {
-        Connection con = connect();
-        List<Order> orders = orderDAO.getOrdersByStatus(con, tourStatus);
+    public List<Order> getOrdersByStatus(Status tourStatus) throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return orderDAO.getOrdersByStatus(tourStatus);
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return orders;
     }
 
     @Override
-    public List<Order> findAllOrders() {
-        Connection con = connect();
-        List<Order> orders = orderDAO.findAllOrders(con);
+    public List<Order> findAllOrders() throws ServiceException {
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return orderDAO.findAllOrders();
+        } catch (DBException e) {
+            throw new ServiceException(e);
         }
-        return orders;
-    }
-
-    private Connection connect() {
-        return  DataSourceConnection.getInstance().getConnection();
     }
 }

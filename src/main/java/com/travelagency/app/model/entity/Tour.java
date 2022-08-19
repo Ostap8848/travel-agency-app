@@ -17,7 +17,7 @@ public class Tour {
     private Hotel hotelTypeByStars;
     private boolean isTourHot;
     private BigDecimal discount;
-    private List<Tour> tours;
+    private String description;
 
     public static TourBuilder newTourBuilder() {
         return new Tour().new TourBuilder();
@@ -59,8 +59,8 @@ public class Tour {
         return discount;
     }
 
-    public List<Tour> getTours() {
-        return tours;
+    public String getDescription() {
+        return description;
     }
 
     @Override
@@ -75,6 +75,7 @@ public class Tour {
                 ", hotelTypeByStars=" + hotelTypeByStars +
                 ", isTourHot=" + isTourHot +
                 ", discount=" + discount +
+                ", description=" + description +
                 '}';
     }
 
@@ -125,8 +126,8 @@ public class Tour {
             return this;
         }
 
-        public TourBuilder setTours(List<Tour> tours) {
-            Tour.this.tours = tours;
+        public TourBuilder setDescription(String description) {
+            Tour.this.description = description;
             return this;
         }
 

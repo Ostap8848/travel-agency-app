@@ -1,14 +1,8 @@
 
-X	java:S125A"<This block of commented-out lines of code should be removed.(µ‚Ÿì8†£ §0
-X	java:S125u"<This block of commented-out lines of code should be removed.(µ‚Ÿì8¼­å§0
+d
+java:S2095U"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0
 e
-java:S2095Š"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(´ÁÜ€8·ãõ¤0
-X	java:S125)"<This block of commented-out lines of code should be removed.(µ‚Ÿì8•¶¢§0
-^	java:S125”"<This block of commented-out lines of code should be removed.(­üÇ÷øÿÿÿÿ8ıÇ…§0
+java:S2095‹"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(´ÁÜ€8·ãõ¤0
+^	java:S125•"<This block of commented-out lines of code should be removed.(­üÇ÷øÿÿÿÿ8Ğœªï©0
 d
-java:S2095f"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0
-X	java:S125c"<This block of commented-out lines of code should be removed.(µ‚Ÿì8¾Ÿ§0
-d
-java:S2095T"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0
-X	java:S1255"<This block of commented-out lines of code should be removed.(µ‚Ÿì8øò¡§0
-X	java:S125Q"<This block of commented-out lines of code should be removed.(µ‚Ÿì8ªàŸ§0
+java:S2095g"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8·ãõ¤0

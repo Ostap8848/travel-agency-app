@@ -1,35 +1,35 @@
 package com.travelagency.app.dao;
 
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.model.entity.constant.Hotel;
 import com.travelagency.app.model.entity.constant.TourType;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
 import java.util.List;
 
 public interface TourDAO {
-    boolean insertTour(Connection connection, Tour tour);
+    boolean insertTour(Tour tour) throws DBException;
 
-    boolean deleteTour(Connection connection, Tour tour);
+    boolean deleteTour(Tour tour) throws DBException;
 
-    boolean updateTour(Connection connection, Tour tour);
+    boolean updateTour(Tour tour) throws DBException;
 
-    Tour getTourById(Connection connection, int tourId);
+    Tour getTourById(int tourId) throws DBException;
 
-    Tour getTourByUkrName(Connection connection, String nameUkr);
+    Tour getTourByUkrName(String nameUkr) throws DBException;
 
-    Tour getTourByEngName(Connection connection, String nameEng);
+    Tour getTourByEngName(String nameEng) throws DBException;
 
-    List<Tour> getToursByType(Connection connection, TourType tourType);
+    List<Tour> getToursByType(TourType tourType) throws DBException;
 
-    List<Tour> getToursByPrice(Connection connection, BigDecimal price);
+    List<Tour> getToursByPrice(BigDecimal price) throws DBException;
 
-    List<Tour> getToursByNumberOfPersons(Connection connection, int numberOfPersons);
+    List<Tour> getToursByNumberOfPersons(int numberOfPersons) throws DBException;
 
-    List<Tour> getToursByHotelType(Connection connection, Hotel hotelType);
+    List<Tour> getToursByHotelType(Hotel hotelType) throws DBException;
 
-    List<Tour> getAllHotTours(Connection connection);
+    List<Tour> getAllHotTours() throws DBException;
 
-    List<Tour> findAllTours(Connection connection);
+    List<Tour> findAllTours(int offset) throws DBException;
 }
