@@ -78,45 +78,50 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
-    public List<Tour> getToursByType(TourType tourType) throws ServiceException {
+    public List<Tour> getToursByType(TourType tourType, int offset) throws ServiceException {
+        offset = offset * 10 - 10;
         try {
-            return tourDAO.getToursByType(tourType);
+            return tourDAO.getToursByType(tourType, offset);
         } catch (DBException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public List<Tour> getToursByPrice(BigDecimal price) throws ServiceException {
+    public List<Tour> getToursByPrice(int offset) throws ServiceException {
+        offset = offset * 10 - 10;
         try {
-            return tourDAO.getToursByPrice(price);
+            return tourDAO.getToursByPrice(offset);
         } catch (DBException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public List<Tour> getToursByNumberOfPersons(int numberOfPersons) throws ServiceException {
+    public List<Tour> getToursByNumberOfPersons(int offset) throws ServiceException {
+        offset = offset * 10 - 10;
         try {
-            return tourDAO.getToursByNumberOfPersons(numberOfPersons);
+            return tourDAO.getToursByNumberOfPersons(offset);
         } catch (DBException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public List<Tour> getToursByHotelType(Hotel hotelType) throws ServiceException {
+    public List<Tour> getToursByHotelType(Hotel hotelType, int offset) throws ServiceException {
+        offset = offset * 10 - 10;
         try {
-            return tourDAO.getToursByHotelType(hotelType);
+            return tourDAO.getToursByHotelType(hotelType, offset);
         } catch (DBException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public List<Tour> getAllHotTours() throws ServiceException {
+    public List<Tour> getAllHotTours(int offset) throws ServiceException {
+        offset = offset * 10 - 10;
         try {
-            return tourDAO.getAllHotTours();
+            return tourDAO.getAllHotTours(offset);
         } catch (DBException e) {
             throw new ServiceException(e);
         }
@@ -124,6 +129,7 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public List<Tour> findAllTours(int offset) throws ServiceException {
+        offset = offset * 10 - 10;
         try {
             return tourDAO.findAllTours(offset);
         } catch (DBException e) {

@@ -9,6 +9,7 @@ import com.travelagency.app.web.command.CommandContainer;
 import com.travelagency.app.dao.TourDAO;
 import com.travelagency.app.dao.impl.TourDAOImpl;
 import com.travelagency.app.web.command.HomePageCommand;
+import com.travelagency.app.web.command.SetLocale;
 import com.travelagency.app.web.command.order.AddTourIntoOrderCommand;
 import com.travelagency.app.web.command.order.SetTourStatusCommand;
 import com.travelagency.app.web.command.tour.*;
@@ -68,10 +69,16 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
 
         CommandContainer commands = new CommandContainer();
         ActionCommand command = new HomePageCommand();
+        commands.addCommand("homePage", command);
         commands.addCommand(null, command);
         commands.addCommand("", command);
+        command = new SetLocale();
+        commands.addCommand("setLocale", command);
 
         //User commands
+        command = new RegisterFormCommand();
+        commands.addCommand("registerForm", command);
+
         command = new RegisterCommand(userService);
         commands.addCommand("register", command);
 
@@ -97,6 +104,9 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         command = new AllToursListCommand(tourService);
         commands.addCommand("allTours", command);
 
+        command = new AllHotToursListCommand(tourService);
+        commands.addCommand("hotTours", command);
+
         command = new CreateTourCommand();
         commands.addCommand("createTour", command);
 
@@ -109,16 +119,16 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         command = new EditTourInfoCommand();
         commands.addCommand("editTourInfo", command);
 
-        command = new ToursByHotelTypeListCommand();
+        command = new ToursByHotelTypeListCommand(tourService);
         commands.addCommand("toursByHotelType", command);
 
-        command = new ToursByNumberOfPersonsListCommand();
+        command = new ToursByNumberOfPersonsListCommand(tourService);
         commands.addCommand("toursByNumberOfPersons", command);
 
-        command = new ToursByPriceListCommand();
+        command = new ToursByPriceListCommand(tourService);
         commands.addCommand("toursByPrice", command);
 
-        command = new ToursByTypeListCommand();
+        command = new ToursByTypeListCommand(tourService);
         commands.addCommand("toursByType", command);
 
         //Order commands

@@ -18,11 +18,11 @@ public class ConstantsQuery {
     public static final String GET_TOUR_BY_ID = "SELECT * FROM tours WHERE id = ?";
     public static final String GET_TOUR_BY_UKR_NAME = "SELECT * FROM tours WHERE tour_name_ukr = ?";
     public static final String GET_TOUR_BY_ENG_NAME = "SELECT * FROM tours WHERE tour_name_eng = ?";
-    public static final String GET_TOURS_BY_TYPE = "SELECT * FROM tours WHERE tour_type = ? ORDER BY is_tour_hot DESC, id ASC";
-    public static final String GET_TOURS_BY_PRICE = "SELECT * FROM tours WHERE tour_price = ? ORDER BY is_tour_hot DESC, tour_price ASC, id ASC";
-    public static final String GET_TOURS_BY_NUMBER_OF_PERSONS = "SELECT * FROM tours WHERE number_of_persons = ? ORDER BY is_tour_hot DESC, number_of_persons ASC, id ASC";
-    public static final String GET_TOURS_BY_HOTEL_TYPE = "SELECT * FROM tours WHERE hotel_type = ? ORDER BY is_tour_hot DESC, id ASC";
-    public static final String GET_ALL_HOT_TOURS = "SELECT * FROM tours WHERE is_tour_hot = ? ORDER BY id ASC";
+    public static final String GET_TOURS_BY_TYPE = "SELECT * FROM tours WHERE tour_type = ? ORDER BY is_tour_hot DESC, id ASC LIMIT 10 OFFSET ?";
+    public static final String GET_TOURS_BY_PRICE = "SELECT * FROM tours ORDER BY is_tour_hot DESC, tour_price DESC, id ASC LIMIT 10 OFFSET ?";
+    public static final String GET_TOURS_BY_NUMBER_OF_PERSONS = "SELECT * FROM tours ORDER BY is_tour_hot DESC, number_of_persons DESC, id ASC LIMIT 10 OFFSET ?";
+    public static final String GET_TOURS_BY_HOTEL_TYPE = "SELECT * FROM tours WHERE hotel_type = ? ORDER BY is_tour_hot DESC, id ASC LIMIT 10 OFFSET ?";
+    public static final String GET_ALL_HOT_TOURS = "SELECT * FROM tours WHERE is_tour_hot = ? ORDER BY id ASC LIMIT 10 OFFSET ?";
     public static final String FIND_ALL_TOURS = "SELECT * FROM tours ORDER BY is_tour_hot DESC, id ASC LIMIT 10 OFFSET ?";
 
 

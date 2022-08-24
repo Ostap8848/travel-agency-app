@@ -21,15 +21,15 @@ public interface TourDAO {
 
     Tour getTourByEngName(String nameEng) throws DBException;
 
-    List<Tour> getToursByType(TourType tourType) throws DBException;
+    List<Tour> getToursByType(TourType tourType, int offset) throws DBException;
 
-    List<Tour> getToursByPrice(BigDecimal price) throws DBException;
+    List<Tour> getToursByPrice(int offset) throws DBException;
 
-    List<Tour> getToursByNumberOfPersons(int numberOfPersons) throws DBException;
+    List<Tour> getToursByNumberOfPersons(int offset) throws DBException;
 
-    List<Tour> getToursByHotelType(Hotel hotelType) throws DBException;
+    List<Tour> getToursByHotelType(Hotel hotelType, int offset) throws DBException;
 
-    List<Tour> getAllHotTours() throws DBException;
+    List<Tour> getAllHotTours(int offset) throws DBException;
 
     List<Tour> findAllTours(int offset) throws DBException;
 }

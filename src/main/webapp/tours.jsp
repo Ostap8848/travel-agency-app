@@ -8,19 +8,50 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setBundle basename="messagesEng"/>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="messages"/>
+<div class="header">
+
+   <input type="button" onclick="location.href='home?command=setLocale&locale=ukr';" value="Ua" />
+   <input type="button" onclick="location.href='home?command=setLocale&locale';" value="Eng" />
+
+</div>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body>
-<h2 style="text-align: center"><fmt:message key="caption.allTours"/></h2>
+<h2 style="text-align: center"><a href="home?command=allTours"><fmt:message key="index.allTours"/></a></h2>
 <div align="center">
    <nav>
+       <i><fmt:message key="index.chooseBy"/>:</i>
       <ul class="pagination justify-content-center">
-         <li class="page-item"><a class="page-link" href="home?command=toursByHotelType&page=${param.page}"><fmt:message key="caption.byHotelType"/></a></li>
-         <li class="page-item"><a class="page-link" href="home?command=toursByNumberOfPersons&page=${param.page}"><fmt:message key="caption.ByNumberOfPersons"/></a></li>
+         <li class="page-item"><form action="home" method="get">
+            <input hidden name="command" value="toursByHotelType">
+            <select name="hotelType">
+               <option disabled><fmt:message key="index.byHotelType"/></option>
+               <option value="FIVE_STAR">FIVE_STAR</option>
+               <option value="FOUR_STAR">FOUR_STAR</option>
+               <option value="THREE_STAR">THREE_STAR</option>
+               <option value="TWO_STAR">TWO_STAR</option>
+               <option value="ONE_STAR">ONE_STAR</option>
+            </select>
+            <p><input type="submit" value="<fmt:message key="index.search"/>"/></p>
+         </form></li>
+         <li class="page-item"><a class="page-link" href="home?command=toursByNumberOfPersons&page=${param.page}"><fmt:message key="index.ByNumberOfPersons"/></a></li>
+          <li class="page-item"><a class="page-link" href="home?command=toursByPrice&page=${param.page}"><fmt:message key="index.byPrice"/></a></li>
+         <li class="page-item"><form action="home" method="get">
+            <input hidden name="command" value="toursByType">
+            <select name="tourType">
+               <option disabled><fmt:message key="index.byType"/></option>
+               <option value="REST">REST</option>
+               <option value="SHOPPING">SHOPPING</option>
+               <option value="EXCURSION">EXCURSION</option>
+            </select>
+            <p><input type="submit" value="<fmt:message key="index.search"/>"/></p>
+         </form></li>
       </ul>
    </nav>
+<b><fmt:message key="index.showMe"/><a href="home?command=hotTours"><fmt:message key="index.hotTours"/></a></b>
    <table border="2" cellpadding="5">
       <tr>
          <th>UKR name</th>
@@ -61,7 +92,7 @@
    <nav>
       <ul class="pagination justify-content-center">
          <c:if test="${param.page-1 >= 1}">
-            <li class="page-item"><a class="page-link" href="home?command=${param.command}&page=${param.page-1}"><fmt:message key="caption.previous"/></a></li>
+            <li class="page-item"><a class="page-link" href="home?command=${param.command}&page=${param.page-1}"><fmt:message key="index.previous"/></a></li>
          </c:if>
 
          <c:forEach var="page" items="${pages}">
@@ -72,7 +103,7 @@
          <c:set var="size" scope="page" value="${requestScope.pages}"/>
 
          <c:if test="${param.page+1 <= size.size()}">
-            <li class="page-item"><a class="page-link" href="home?command=${param.command}&page=${param.page+1}"><fmt:message key="caption.next"/></a></li>
+            <li class="page-item"><a class="page-link" href="home?command=${param.command}&page=${param.page+1}"><fmt:message key="index.next"/></a></li>
          </c:if>
       </ul>
    </nav>

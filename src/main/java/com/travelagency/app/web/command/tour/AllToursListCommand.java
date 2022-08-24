@@ -27,17 +27,16 @@ public class AllToursListCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         /*List<Tour> tours = null;
-        String spage=request.getParameter("page");
+        String spage = request.getParameter("page");
         int pageId = 0;
         if (spage != null) {
-            pageId=Integer.parseInt(spage);
+            pageId = Integer.parseInt(spage);
         } else {
             pageId = 1;
         }
         try {
             tours = tourService.findAllTours(pageId * 10 - 10);
-        }
-        catch (ServiceException e) {
+        } catch (ServiceException e) {
             throw new CommandException(e);
         }
         request.setAttribute("tours", tours);

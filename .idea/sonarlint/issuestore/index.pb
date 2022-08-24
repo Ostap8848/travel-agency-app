@@ -131,3 +131,15 @@ I
 src/main/webapp/tours.jsp,d\1\d1fac9d4081a644db2db0576ab68d53086116049
 L
 src/sql/travel-agency-db.sql,2\9\2997734019847779993405c24ab2e3c3ec8a4dd1
+M
+src/main/webapp/makeOrder.jsp,2\b\2be99f7d4e0ecc77d7f9477c8de8c9c0a922b098
+p
+@src/main/java/com/travelagency/app/encryption/CryptPassword.java,3\0\30c562c25fbe7d05dc4b1ab4d70d87df00f532b4
+|
+Lsrc/main/java/com/travelagency/app/web/command/user/RegisterFormCommand.java,0\6\060c7d88366726e974d425d06e4437e897e4c523
+m
+=src/main/java/com/travelagency/app/web/command/SetLocale.java,3\7\37f747c3ec94325e25da3d320ff16150df8108ef
+
+Osrc/main/java/com/travelagency/app/web/command/tour/AllHotToursListCommand.java,a\a\aa1162850ec3328a25e23c338be74b2f3e88f683
+M
+src/main/webapp/errorPage.jsp,6\2\623298baba5501f97cbba1bfb86226a0924b84bc

@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -131,11 +132,12 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public List<Tour> getToursByType(TourType tourType) throws DBException {
+    public List<Tour> getToursByType(TourType tourType, int offset) throws DBException {
         List<Tour> toursByType = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_TYPE)) {
             preparedStatement.setString(1, String.valueOf(tourType));
+            preparedStatement.setInt(2, offset);
             getTourListExecute(toursByType, preparedStatement);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -146,11 +148,11 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public List<Tour> getToursByPrice(BigDecimal price) throws DBException {
+    public List<Tour> getToursByPrice(int offset) throws DBException {
         List<Tour> toursByPrice = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_PRICE)) {
-            preparedStatement.setBigDecimal(1, price);
+            preparedStatement.setInt(1, offset);
             getTourListExecute(toursByPrice, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get tours by price: ", e);
@@ -160,11 +162,11 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public List<Tour> getToursByNumberOfPersons(int numberOfPersons) throws DBException {
+    public List<Tour> getToursByNumberOfPersons(int offset) throws DBException {
         List<Tour> toursByNumberOfPersons = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_NUMBER_OF_PERSONS)) {
-            preparedStatement.setInt(1, numberOfPersons);
+            preparedStatement.setInt(1, offset);
             getTourListExecute(toursByNumberOfPersons, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get tours by number of persons: ", e);
@@ -174,11 +176,12 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public List<Tour> getToursByHotelType(Hotel hotelType) throws DBException {
+    public List<Tour> getToursByHotelType(Hotel hotelType, int offset) throws DBException {
         List<Tour> toursByHotelType = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_TOURS_BY_HOTEL_TYPE)) {
             preparedStatement.setString(1, String.valueOf(hotelType));
+            preparedStatement.setInt(2, offset);
             getTourListExecute(toursByHotelType, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get tours by hotel type: ", e);
@@ -188,11 +191,12 @@ public class TourDAOImpl implements TourDAO {
     }
 
     @Override
-    public List<Tour> getAllHotTours() throws DBException {
+    public List<Tour> getAllHotTours(int offset) throws DBException {
         List<Tour> hotTours = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_ALL_HOT_TOURS)) {
             preparedStatement.setBoolean(1, true);
+            preparedStatement.setInt(2, offset);
             getTourListExecute(hotTours, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to get all hot tours: ", e);
