@@ -32,4 +32,6 @@ public interface TourService {
     List<Tour> getAllHotTours(int offset) throws ServiceException;
 
     List<Tour> findAllTours(int offset) throws ServiceException;
+
+    int getNumberOfRecords();
 }

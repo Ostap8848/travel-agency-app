@@ -218,6 +218,20 @@ public class TourDAOImpl implements TourDAO {
         }
     }
 
+    @Override
+    public int getNumberOfRecords(){
+        int totalCount = 0;
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.NUMBER_OF_RECORDS);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            resultSet.next();
+            totalCount = resultSet.getInt(1);
+            return totalCount;
+        } catch (SQLException e) {
+            LOG.error("Failed to find all tours: ", e);
+        }
+        return totalCount;
+    }
+
     private void setTourParameters(Tour tour, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement.setString(1, tour.getNameUkr());
         preparedStatement.setString(2, tour.getNameEng());
@@ -240,6 +254,8 @@ public class TourDAOImpl implements TourDAO {
         }
         return tours;
     }
+
+
 
     private Connection connect() {
         return DataSourceConnection.getInstance().getConnection();

@@ -5,10 +5,13 @@ import com.travelagency.app.web.command.exception.CommandException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LogOutCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        return null;
+        HttpSession session = request.getSession(true);
+        session.invalidate();
+        return "login.jsp";
     }
 }

@@ -32,4 +32,6 @@ public interface TourDAO {
     List<Tour> getAllHotTours(int offset) throws DBException;
 
     List<Tour> findAllTours(int offset) throws DBException;
+
+    int getNumberOfRecords();
 }

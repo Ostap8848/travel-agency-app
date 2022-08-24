@@ -24,6 +24,7 @@ public class ConstantsQuery {
     public static final String GET_TOURS_BY_HOTEL_TYPE = "SELECT * FROM tours WHERE hotel_type = ? ORDER BY is_tour_hot DESC, id ASC LIMIT 10 OFFSET ?";
     public static final String GET_ALL_HOT_TOURS = "SELECT * FROM tours WHERE is_tour_hot = ? ORDER BY id ASC LIMIT 10 OFFSET ?";
     public static final String FIND_ALL_TOURS = "SELECT * FROM tours ORDER BY is_tour_hot DESC, id ASC LIMIT 10 OFFSET ?";
+    public static final String NUMBER_OF_RECORDS = "SELECT COUNT(*) FROM tours";
 
 
     public static final String INSERT_ORDER = "INSERT INTO orders (price, status, notes) VALUES (?,?,?)";

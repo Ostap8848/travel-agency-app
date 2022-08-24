@@ -6,31 +6,38 @@ import com.travelagency.app.web.command.ActionCommand;
 import com.travelagency.app.web.command.exception.CommandException;
 import com.travelagency.app.web.service.UserService;
 import com.travelagency.app.web.service.exception.ServiceException;
-import com.travelagency.app.web.service.impl.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.servlet.http.HttpSession;
 
 public class LogInCommand implements ActionCommand {
+    private static final Logger LOG = LogManager.getLogger(LogInCommand.class);
+    private final UserService userService;
+
+    public LogInCommand(UserService userService) {
+        this.userService = userService;
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        String page = null;
-        String login = request.getParameter("username");
+        HttpSession session = request.getSession();
+        String login = request.getParameter("login");
         String password = request.getParameter("password");
-        UserService userService = new UserServiceImpl();
+        User user = null;
         try {
-            if(userService.getUserByLogin(login).getLogin().equals(login) &&
-                    CryptPassword.check(password,userService.getUserByLogin(login).getPassword())) {
-                page = "home.jsp";
-            } else {
-                page = "errorPage.jsp";
-            }
+            user = userService.getUserByLogin(login);
         } catch (ServiceException e) {
-            throw new CommandException();
+            throw new CommandException(e);
         }
-        return page;
+        if(user != null && CryptPassword.check(password, user.getPassword()) && !user.getIsBlocked()) {
+            session.setAttribute("user", user);
+        } else {
+            LOG.info("Cannot log in");
+            return "error.jsp";
+        }
+        return "personalAccount.jsp";
     }
 }

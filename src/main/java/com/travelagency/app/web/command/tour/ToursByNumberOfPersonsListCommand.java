@@ -21,10 +21,11 @@ public class ToursByNumberOfPersonsListCommand implements ActionCommand {
     public ToursByNumberOfPersonsListCommand(TourService tourService) {
         this.tourService = tourService;
     }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         int page;
-        if (request.getParameter("page") == null) {
+        if (request.getParameter("page") == null || request.getParameter("page").equals("")) {
             page = 1;
         } else {
             page = Integer.parseInt(request.getParameter("page"));
@@ -36,7 +37,7 @@ public class ToursByNumberOfPersonsListCommand implements ActionCommand {
             throw new CommandException(e);
         }
         request.setAttribute("tours", tours);
-        int countPages = tours.size() / 10 + 1;
+        int countPages = tourService.getNumberOfRecords() / 10 + 1;
         List<Integer> pages = new ArrayList<>();
         for (int i = 1; i <= countPages; i++) {
             pages.add(i);

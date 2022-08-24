@@ -31,19 +31,19 @@
             <td>Login</td>
             <td> <input type="text" name="login"
                         style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                        pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required></td>
+                        required></td>
         </tr>
         <tr>
             <td>Password</td>
             <td><input type="password" name="password"
                        style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                       minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required></td>
+                       minlength="8"  required></td>
         </tr>
         <tr>
             <td>Repeat Password</td>
             <td><input type="password" name="password"
                        style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                       minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required></td>
+                       minlength="8" required></td>
         </tr>
     </table>
     <input type="submit" value="<fmt:message key="index.login"/>" /></form>

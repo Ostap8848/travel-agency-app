@@ -1,9 +1,9 @@
 package com.travelagency.app.web.command.tour;
 
 
+import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.web.command.ActionCommand;
 import com.travelagency.app.web.command.exception.CommandException;
-import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.web.service.TourService;
 import com.travelagency.app.web.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -26,26 +26,10 @@ public class AllToursListCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        /*List<Tour> tours = null;
-        String spage = request.getParameter("page");
-        int pageId = 0;
-        if (spage != null) {
-            pageId = Integer.parseInt(spage);
-        } else {
-            pageId = 1;
-        }
-        try {
-            tours = tourService.findAllTours(pageId * 10 - 10);
-        } catch (ServiceException e) {
-            throw new CommandException(e);
-        }
-        request.setAttribute("tours", tours);
-
-        return "tours.jsp";*/
         int page;
-        if (request.getParameter("page") == null) {
+        if (request.getParameter("page") == null || request.getParameter("page").equals("")) {
             page = 1;
-        } else{
+        } else {
             page = Integer.parseInt(request.getParameter("page"));
         }
         List<Tour> tours = null;
@@ -55,9 +39,9 @@ public class AllToursListCommand implements ActionCommand {
             throw new CommandException(e);
         }
         request.setAttribute("tours", tours);
-        int countPages = tours.size()/10+1;
+        int countPages = tourService.getNumberOfRecords() / 10 + 1;
         List<Integer> pages = new ArrayList<>();
-        for (int i=1; i<=countPages; i++){
+        for (int i = 1; i <= countPages; i++) {
             pages.add(i);
         }
         request.setAttribute("pages", pages);

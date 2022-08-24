@@ -82,8 +82,11 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         command = new RegisterCommand(userService);
         commands.addCommand("register", command);
 
-        command = new LogInCommand();
+        command = new LogInCommand(userService);
         commands.addCommand("login", command);
+
+        command = new LoginFormCommand();
+        commands.addCommand("loginForm", command);
 
         command = new LogOutCommand();
         commands.addCommand("logout", command);
