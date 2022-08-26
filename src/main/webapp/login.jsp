@@ -12,8 +12,10 @@
 <fmt:setBundle basename="messages"/>
 <div class="header">
 
-    <input type="button" onclick="location.href='home?command=setLocale&locale=ukr';" value="Ua" />
-    <input type="button" onclick="location.href='home?command=setLocale&locale';" value="Eng" />
+    <a href = "home?command=setLocale&locale=ukr&pageToTranslate=${param.command}" role="button"
+       class="btn btn-outline-primary me-2">Ua</a>
+    <a href = "home?command=setLocale&locale&pageToTranslate=${param.command}" role="button"
+       class="btn btn-outline-primary me-2">Eng</a>
 
 </div>
 <html>

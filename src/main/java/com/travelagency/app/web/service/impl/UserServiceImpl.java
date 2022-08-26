@@ -66,11 +66,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUsers() throws ServiceException {
+    public List<User> findAllUsers(int offset) throws ServiceException {
         try {
-            return userDAO.findAllUsers();
+            return userDAO.findAllUsers(countOffset(offset));
         } catch (DBException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public void blockUser(User user) throws ServiceException {
+        user.setBlocked(true);
+        try {
+            userDAO.updateUser(user);
+        } catch (DBException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void unblockUser(User user) throws ServiceException {
+        user.setBlocked(false);
+        try {
+            userDAO.updateUser(user);
+        } catch (DBException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public int getNumberOfRecords() {
+        return userDAO.getNumberOfRecords();
+    }
+
+    private int countOffset(int offset) {
+        return offset * 10 - 10;
     }
 }

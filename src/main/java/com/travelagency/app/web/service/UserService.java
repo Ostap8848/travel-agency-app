@@ -17,5 +17,11 @@ public interface UserService {
 
     User getUserByLogin(String login) throws ServiceException;
 
-    List<User> findAllUsers() throws ServiceException;
+    List<User> findAllUsers(int offset) throws ServiceException;
+
+    int getNumberOfRecords();
+
+    void blockUser(User user) throws ServiceException;
+
+    void unblockUser(User user) throws ServiceException;
 }

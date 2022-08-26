@@ -1,20 +1,20 @@
 
-s Web:TableHeaderHasIdOrScopeCheckA";Add either an 'id' or a 'scope' attribute to this <th> tag.(ß“şæøÿÿÿÿ8óÏºŞ¬0
-a	Web:S5254"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8ÉŠÛ¸¬0
-NWeb:BoldAndItalicTagsCheck6"!Replace this <b> tag by <strong>.(ŒÏæˆ8©¹ºŞ¬0
-E	Web:S1827")Remove this deprecated "align" attribute.(òå„ë8ÖÕ½Ú¬0
-PWeb:PageWithoutTitleCheck"Add a <title> tag to this page.(œ÷Ãûÿÿÿÿ8óÏºŞ¬0
-s Web:TableHeaderHasIdOrScopeCheck9";Add either an 'id' or a 'scope' attribute to this <th> tag.(“šïâûÿÿÿÿ8óÏºŞ¬0
-`	Web:S5255\"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(î¿Ş¦8óÏºŞ¬0
-s Web:TableHeaderHasIdOrScopeCheck>";Add either an 'id' or a 'scope' attribute to this <th> tag.(–èíıÿÿÿÿ8óÏºŞ¬0
-s Web:TableHeaderHasIdOrScopeCheck@";Add either an 'id' or a 'scope' attribute to this <th> tag.(ß¡çéúÿÿÿÿ8óÏºŞ¬0
-`	Web:S5255"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(î¿Ş¦8óÏºŞ¬0
-TWeb:TableWithoutCaptionCheck7" Add a description to this table.(½–û›ûÿÿÿÿ8óÏºŞ¬0
-P	Web:S18277"/Remove this deprecated "cellpadding" attribute.(½–û›ûÿÿÿÿ8óÏºŞ¬0
-s Web:TableHeaderHasIdOrScopeCheck=";Add either an 'id' or a 'scope' attribute to this <th> tag.(…ìÎÖÿÿÿÿÿ8óÏºŞ¬0
-jWeb:DoctypePresenceCheck":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ8ÉŠÛ¸¬0
-JWeb:BoldAndItalicTagsCheck"Replace this <i> tag by <em>.(áä‘Ò8ÖÕ½Ú¬0
-m Web:TableHeaderHasIdOrScopeCheck:";Add either an 'id' or a 'scope' attribute to this <th> tag.(üõ©d8óÏºŞ¬0
-s Web:TableHeaderHasIdOrScopeCheck;";Add either an 'id' or a 'scope' attribute to this <th> tag.(èàÂéùÿÿÿÿ8óÏºŞ¬0
-s Web:TableHeaderHasIdOrScopeCheck<";Add either an 'id' or a 'scope' attribute to this <th> tag.(ä¾ú·øÿÿÿÿ8óÏºŞ¬0
-n Web:TableHeaderHasIdOrScopeCheck?";Add either an 'id' or a 'scope' attribute to this <th> tag.(â‹Éö8óÏºŞ¬0
+a	Web:S5254."@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8ÉŠÛ¸¬0
+s Web:TableHeaderHasIdOrScopeCheck_";Add either an 'id' or a 'scope' attribute to this <th> tag.(©ÔÆ…øÿÿÿÿ8Ê¤Öª­0
+s Web:TableHeaderHasIdOrScopeCheckc";Add either an 'id' or a 'scope' attribute to this <th> tag.(ùøößşÿÿÿÿ8Ò¢¸«­0
+E	Web:S1827")Remove this deprecated "align" attribute.(Ù˜¯ö8Ã²ê§­0
+n Web:TableHeaderHasIdOrScopeCheckb";Add either an 'id' or a 'scope' attribute to this <th> tag.(§§Æü8Ò¢¸«­0
+jWeb:DoctypePresenceCheck.":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ8ÉŠÛ¸¬0
+s Web:TableHeaderHasIdOrScopeCheckd";Add either an 'id' or a 'scope' attribute to this <th> tag.(…›±¦üÿÿÿÿ8ƒ‰È«­0
+s Web:TableHeaderHasIdOrScopeCheck]";Add either an 'id' or a 'scope' attribute to this <th> tag.(¦×„ıÿÿÿÿ8Í£¤­0
+P	Web:S1827["/Remove this deprecated "cellpadding" attribute.(½–û›ûÿÿÿÿ8Í£¤­0
+NWeb:BoldAndItalicTagsCheckZ"!Replace this <b> tag by <strong>.(ŒÏæˆ8Í£¤­0
+a	Web:S5255ƒ"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(î¿Ş¦8ûßÉ°­0
+E	Web:S18275")Remove this deprecated "align" attribute.(òå„ë8ÖÕ½Ú¬0
+`	Web:S52556"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(î¿Ş¦8ûßÉ°­0
+n Web:TableHeaderHasIdOrScopeChecka";Add either an 'id' or a 'scope' attribute to this <th> tag.(¯ ¯Õ8Ê¤Öª­0
+TWeb:TableWithoutCaptionCheck[" Add a description to this table.(½–û›ûÿÿÿÿ8Í£¤­0
+JWeb:BoldAndItalicTagsCheck7"Replace this <i> tag by <em>.(áä‘Ò8ÖÕ½Ú¬0
+s Web:TableHeaderHasIdOrScopeCheck^";Add either an 'id' or a 'scope' attribute to this <th> tag.(üóñ¡ûÿÿÿÿ8Í£¤­0
+n Web:TableHeaderHasIdOrScopeCheck`";Add either an 'id' or a 'scope' attribute to this <th> tag.(—’Åá8Ê¤Öª­0
+PWeb:PageWithoutTitleCheck."Add a <title> tag to this page.(œ÷Ãûÿÿÿÿ8ûßÉ°­0

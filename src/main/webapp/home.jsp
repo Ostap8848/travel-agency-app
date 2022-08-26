@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%--<%@ page isELIgnored="false" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
@@ -20,18 +21,34 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-
+<%--<jsp:include page="header/header.jspf"/>--%>
 <div class="container-fluid p-4 my-0 bg-light text-info">
-    <div class="row">
-        <div class="col-10">
-            <h4 align="left">Travel Agency</h4>
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-1 text-end">
+                <a href = "home?command=setLocale&locale=ukr&pageToTranslate=${param.command}" role="button"
+                   class="btn btn-outline-primary me-2">Ua</a>
+                <a href = "home?command=setLocale&locale&pageToTranslate=${param.command}" role="button"
+                   class="btn btn-outline-primary me-2">Eng</a>
         </div>
-        <div class="col-1">
-            <p align="right"><button type="button" class="btn btn-outline-primary"><a href = "home?command=loginForm"><fmt:message key="index.login"/></a></button></p>
+        <div class="col-md-6 text-end">
+            <h4 align="center">Travel Agency</h4>
         </div>
-        <div class="col-1">
-            <p align="left"><button type="button" class="btn btn-outline-primary"><a href = "home?command=registerForm"><fmt:message key="index.registration"/></a></button></p>
-        </div>
+        <c:if test="${sessionScope.user == null}">
+            <div class="col-md-15 text-end">
+                <a href = "home?command=loginForm" role="button"
+                   class="btn btn-outline-primary me-2"><fmt:message key="index.login"/></a>
+                <a href = "home?command=registerForm" role="button" class="btn btn-primary"><fmt:message key="index.registration"/></a>
+            </div>
+        </c:if>
+        <c:if test="${sessionScope.user != null}">
+
+            <div class="col-md-15 text-end">
+                <a href="home?command=personalAccount"><fmt:message key="index.hello"/>
+                        ${sessionScope.user.firstName} ${sessionScope.user.lastName}
+                </a>
+                <a href="home?command=logout" role="button" class="btn btn-outline-primary mx-2"><fmt:message key="index.logout"/></a>
+            </div>
+        </c:if>
     </div>
 </div>
 
@@ -48,15 +65,8 @@
 <h4 align="center"><b><fmt:message key="index.phoneNumber"/></b></h4>
 <h4 align="center">+380671113007</h4>
 <br>
-<h4 align="center"><b><fmt:message key="index.address"></b></h4>
+<h4 align="center"><b><fmt:message key="index.address"/></b></h4>
 <h4 align="center"><fmt:message key="index.exactAddress"/></h4>
-
-
-
-
-
-
-
 
 </body>
 </html>

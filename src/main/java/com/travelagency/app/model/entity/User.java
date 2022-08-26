@@ -56,6 +56,10 @@ public class User implements Serializable {
         return isBlocked;
     }
 
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
+
     @Override
     public String toString() {
         return "User{" +

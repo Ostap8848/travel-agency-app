@@ -137,7 +137,7 @@ public class Main {
         //System.out.println(userDAO.deleteUserById(18));
         //System.out.println(userDAO.findAllUsers().toString());
         //System.out.println(userDAO.deleteUser(2));
-        System.out.println(userDAO.findAllUsers().toString());
+        //System.out.println(userDAO.findAllUsers().toString());
         //System.out.println(tourDAO.updateTour(7, tour4));
         //System.out.println(tourDAO.findAllTours().toString());
         //System.out.println(tourDAO.getAllHotTours().toString());

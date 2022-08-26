@@ -36,8 +36,8 @@ public class LogInCommand implements ActionCommand {
             session.setAttribute("user", user);
         } else {
             LOG.info("Cannot log in");
-            return "error.jsp";
+            return "errorPage.jsp";
         }
-        return "personalAccount.jsp";
+        return "home.jsp";
     }
 }

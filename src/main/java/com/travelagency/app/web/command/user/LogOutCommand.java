@@ -12,6 +12,6 @@ public class LogOutCommand implements ActionCommand {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         HttpSession session = request.getSession(true);
         session.invalidate();
-        return "login.jsp";
+        return "home.jsp";
     }
 }

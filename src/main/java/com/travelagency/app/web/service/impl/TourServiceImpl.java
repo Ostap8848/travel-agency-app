@@ -9,7 +9,6 @@ import com.travelagency.app.model.entity.constant.TourType;
 import com.travelagency.app.web.service.TourService;
 import com.travelagency.app.web.service.exception.ServiceException;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class TourServiceImpl implements TourService {
@@ -135,7 +134,8 @@ public class TourServiceImpl implements TourService {
     public int getNumberOfRecords() {
         return tourDAO.getNumberOfRecords();
     }
-     private int countOffset(int offset) {
+
+    private int countOffset(int offset) {
         return offset * 10 - 10;
-     }
+    }
 }

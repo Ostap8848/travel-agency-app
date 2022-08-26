@@ -221,7 +221,7 @@ public class TourDAOImpl implements TourDAO {
     @Override
     public int getNumberOfRecords(){
         int totalCount = 0;
-        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.NUMBER_OF_RECORDS);
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.NUMBER_OF_TOUR_RECORDS);
              ResultSet resultSet = preparedStatement.executeQuery()) {
             resultSet.next();
             totalCount = resultSet.getInt(1);

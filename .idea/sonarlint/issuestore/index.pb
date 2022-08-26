@@ -143,3 +143,13 @@ m
 Osrc/main/java/com/travelagency/app/web/command/tour/AllHotToursListCommand.java,a\a\aa1162850ec3328a25e23c338be74b2f3e88f683
 M
 src/main/webapp/errorPage.jsp,6\2\623298baba5501f97cbba1bfb86226a0924b84bc
+y
+Isrc/main/java/com/travelagency/app/web/command/user/LoginFormCommand.java,8\7\87e64333d7257c2ba58458e310f8dba61e9b5834
+S
+#src/main/webapp/personalAccount.jsp,3\6\36c50a806fcc567fd2947fa778af17e006f3f0f8
+R
+"src/main/webapp/header/header.jspf,e\0\e0020639342201d032c35290cfb7a3b43f31f39c
+
+Osrc/main/java/com/travelagency/app/web/command/user/PersonalAccountCommand.java,0\d\0ddf7f1f4cb212c59870ecfa5b759d10d4ca218f
+z
+Jsrc/main/java/com/travelagency/app/web/command/order/OrderFormCommand.java,4\d\4d1e309fa4a90ef33b99f14bbc74e691e5226896

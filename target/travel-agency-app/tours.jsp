@@ -13,11 +13,35 @@
 
 <div class="header">
 
-    <input type="button" onclick="location.href='home?command=setLocale&locale=ukr';" value="Ua"/>
-    <input type="button" onclick="location.href='home?command=setLocale&locale';" value="Eng"/>
-    <p align="right">
-        <input type="button" onclick="location.href='home?command=logout';" value="<fmt:message key="index.logout"/>"/>
-    </p>
+    <div class="container-fluid p-4 my-0 bg-light text-info">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-1 text-end">
+                <a href = "home?command=setLocale&locale=ukr&pageToTranslate=${param.command}" role="button"
+                   class="btn btn-outline-primary me-2">Ua</a>
+                <a href = "home?command=setLocale&locale&pageToTranslate=${param.command}" role="button"
+                   class="btn btn-outline-primary me-2">Eng</a>
+            </div>
+            <div class="col-md-6 text-end">
+                <h4 align="center"><a href="home?command=homePage">Travel Agency</a></h4>
+            </div>
+            <c:if test="${sessionScope.user == null}">
+                <div class="col-md-15 text-end">
+                    <a href = "home?command=loginForm" role="button"
+                       class="btn btn-outline-primary me-2"><fmt:message key="index.login"/></a>
+                    <a href = "home?command=registerForm" role="button" class="btn btn-primary"><fmt:message key="index.registration"/></a>
+                </div>
+            </c:if>
+            <c:if test="${sessionScope.user != null}">
+
+                <div class="col-md-15 text-end">
+                    <a href="home?command=personalAccount"><fmt:message key="index.hello"/>
+                            ${sessionScope.user.firstName} ${sessionScope.user.lastName}
+                    </a>
+                    <a href="home?command=logout" role="button" class="btn btn-outline-primary mx-2"><fmt:message key="index.logout"/></a>
+                </div>
+            </c:if>
+        </div>
+    </div>
 </div>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,13 +57,14 @@
             <li class="page-item">
                 <form action="home" method="get">
                     <input hidden name="command" value="toursByHotelType">
+                    <%--<input hidden name="page" value="${param.page}">--%>
                     <select name="hotelType">
                         <option disabled><fmt:message key="index.byHotelType"/></option>
-                        <option value="FIVE_STAR">FIVE_STAR</option>
-                        <option value="FOUR_STAR">FOUR_STAR</option>
-                        <option value="THREE_STAR">THREE_STAR</option>
-                        <option value="TWO_STAR">TWO_STAR</option>
-                        <option value="ONE_STAR">ONE_STAR</option>
+                        <option value="FIVE_STAR"><fmt:message key="index.fiveStar"/></option>
+                        <option value="FOUR_STAR"><fmt:message key="index.fourStar"/></option>
+                        <option value="THREE_STAR"><fmt:message key="index.threeStar"/></option>
+                        <option value="TWO_STAR"><fmt:message key="index.twoStar"/></option>
+                        <option value="ONE_STAR"><fmt:message key="index.oneStar"/></option>
                     </select>
                     <p><input type="submit" value="<fmt:message key="index.search"/>"/></p>
                 </form>
@@ -54,11 +79,11 @@
                     <input hidden name="command" value="toursByType">
                     <select name="tourType">
                         <option disabled><fmt:message key="index.byType"/></option>
-                        <option value="REST">REST</option>
-                        <option value="SHOPPING">SHOPPING</option>
-                        <option value="EXCURSION">EXCURSION</option>
+                        <option value="REST"><fmt:message key="index.rest"/></option>
+                        <option value="SHOPPING"><fmt:message key="index.shopping"/></option>
+                        <option value="EXCURSION"><fmt:message key="index.excursion"/></option>
                     </select>
-                    <p><input type="submit" value="<fmt:message key="index.search"/>"/></p>
+                    <p><input type="submit" value="<fmt:message key="index.search"/>" <%--onclick="window.location='home?command=toursByType&tourType=${tourType}&page=${param.page}'"--%>/></p>
                 </form>
             </li>
         </ul>
@@ -66,21 +91,24 @@
     <b><fmt:message key="index.showMe"/><a href="home?command=hotTours"><fmt:message key="index.hotTours"/></a></b>
     <table border="2" cellpadding="5">
         <tr>
-            <th>UKR name</th>
-            <th>ENG name</th>
-            <th>Type</th>
-            <th>Price, UAH</th>
-            <th>Max Persons</th>
-            <th>Hotel Type</th>
-            <th>HOT</th>
-            <th>Possible Discount, %</th>
-            <th>Description</th>
+            <th><fmt:message key="index.name"/></th>
+            <th><fmt:message key="index.byType"/></th>
+            <th><fmt:message key="index.priceUah"/></th>
+            <th><fmt:message key="index.maxPersons"/></th>
+            <th><fmt:message key="index.byHotelType"/></th>
+            <th><fmt:message key="index.hot"/></th>
+            <th><fmt:message key="index.possibleDiscount"/></th>
+            <th><fmt:message key="index.dates"/></th>
         </tr>
         <c:forEach var="tour" items="${tours}">
             <tr>
-                <td><c:out value="${tour.nameUkr}"/>
-                </td>
-                <td><c:out value="${tour.nameEng}"/>
+                <td>
+                    <c:if test="${locale != 'ukr'}">
+                       <c:out value="${tour.nameEng}"/>
+                    </c:if>
+                    <c:if test="${locale == 'ukr'}">
+                        <c:out value="${tour.nameUkr}"/>
+                    </c:if>
                 </td>
                 <td><c:out value="${tour.tourType}"/>
                 </td>

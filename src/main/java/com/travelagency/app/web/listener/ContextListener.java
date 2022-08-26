@@ -11,6 +11,7 @@ import com.travelagency.app.dao.impl.TourDAOImpl;
 import com.travelagency.app.web.command.HomePageCommand;
 import com.travelagency.app.web.command.SetLocale;
 import com.travelagency.app.web.command.order.AddTourIntoOrderCommand;
+import com.travelagency.app.web.command.order.OrderFormCommand;
 import com.travelagency.app.web.command.order.SetTourStatusCommand;
 import com.travelagency.app.web.command.tour.*;
 import com.travelagency.app.web.command.user.*;
@@ -91,16 +92,19 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         command = new LogOutCommand();
         commands.addCommand("logout", command);
 
-        command = new BlockUserCommand();
+        command = new PersonalAccountCommand();
+        commands.addCommand("personalAccount", command);
+
+        command = new BlockUserCommand(userService);
         commands.addCommand("blockUser", command);
 
-        command = new UnblockUserCommand();
+        command = new UnblockUserCommand(userService);
         commands.addCommand("unblockUser", command);
 
         command = new EditUserCommand();
         commands.addCommand("editUser", command);
 
-        command = new AllUsersListCommand();
+        command = new AllUsersListCommand(userService);
         commands.addCommand("allUsers", command);
 
         //Tour commands
@@ -140,6 +144,9 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
 
         command = new SetTourStatusCommand();
         commands.addCommand("setTourStatus", command);
+
+        command = new OrderFormCommand();
+        commands.addCommand("orderForm", command);
 
         context.setAttribute("commandContainer", commands);
     }

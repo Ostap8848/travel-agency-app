@@ -16,5 +16,7 @@ public interface UserDAO {
 
     User getUserByLogin(String login) throws DBException;
 
-    List<User> findAllUsers() throws DBException;
+    List<User> findAllUsers(int offset) throws DBException;
+
+    int getNumberOfRecords();
 }

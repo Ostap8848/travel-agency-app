@@ -113,15 +113,30 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> findAllUsers() throws DBException {
+    public List<User> findAllUsers(int offset) throws DBException {
         List<User> users = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.FIND_ALL_USERS)) {
+            preparedStatement.setInt(1, offset);
             return getUserListExecute(users, preparedStatement);
         } catch (SQLException e) {
             LOG.error("Failed to find all users: ", e);
             throw new DBException(e);
         }
+    }
+
+    @Override
+    public int getNumberOfRecords(){
+        int totalCount = 0;
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.NUMBER_OF_USER_RECORDS);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            resultSet.next();
+            totalCount = resultSet.getInt(1);
+            return totalCount;
+        } catch (SQLException e) {
+            LOG.error("Failed to find all users: ", e);
+        }
+        return totalCount;
     }
 
     private void setUserParameters(User user, PreparedStatement preparedStatement) throws SQLException {

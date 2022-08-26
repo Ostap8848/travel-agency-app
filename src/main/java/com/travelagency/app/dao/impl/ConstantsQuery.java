@@ -9,8 +9,8 @@ public class ConstantsQuery {
     public static final String UPDATE_USER = "UPDATE users SET first_name = ?, last_name = ?, email_login = ?, password = ?, instagram = ?, phone_number = ?, role = ?, is_blocked = ? WHERE id = ?";
     public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
     public static final String GET_USER_BY_LOGIN = "SELECT * FROM users WHERE email_login = ?";
-    public static final String FIND_ALL_USERS = "SELECT * FROM users ORDER BY id ASC";
-
+    public static final String FIND_ALL_USERS = "SELECT * FROM users ORDER BY id ASC LIMIT 10 OFFSET ?";
+    public static final String NUMBER_OF_USER_RECORDS = "SELECT COUNT(*) FROM users";
 
     public static final String INSERT_TOUR = "INSERT INTO tours (tour_name_ukr, tour_name_eng, tour_type, tour_price, number_of_persons, hotel_type, is_tour_hot, discount, description) VALUES (?,?,?,?,?,?,?,?,?)";
     public static final String DELETE_TOUR = "DELETE FROM tours WHERE id = ?";
@@ -24,7 +24,7 @@ public class ConstantsQuery {
     public static final String GET_TOURS_BY_HOTEL_TYPE = "SELECT * FROM tours WHERE hotel_type = ? ORDER BY is_tour_hot DESC, id ASC LIMIT 10 OFFSET ?";
     public static final String GET_ALL_HOT_TOURS = "SELECT * FROM tours WHERE is_tour_hot = ? ORDER BY id ASC LIMIT 10 OFFSET ?";
     public static final String FIND_ALL_TOURS = "SELECT * FROM tours ORDER BY is_tour_hot DESC, id ASC LIMIT 10 OFFSET ?";
-    public static final String NUMBER_OF_RECORDS = "SELECT COUNT(*) FROM tours";
+    public static final String NUMBER_OF_TOUR_RECORDS = "SELECT COUNT(*) FROM tours";
 
 
     public static final String INSERT_ORDER = "INSERT INTO orders (price, status, notes) VALUES (?,?,?)";
