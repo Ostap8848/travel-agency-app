@@ -40,7 +40,7 @@ public class RegisterCommand implements ActionCommand {
         } catch (ServiceException e) {
             throw new CommandException(e);
         }
-        page = "personalAccount.jsp";
+        page = "login.jsp";
         return page;
     }
 }

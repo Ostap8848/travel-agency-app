@@ -22,9 +22,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean insert(Order order) throws ServiceException {
+    public boolean insert(int userId, int tourId, Order order) throws ServiceException {
         try {
-            return orderDAO.insertOrder(order);
+            return orderDAO.insertOrder(userId, tourId, order);
         } catch (DBException e) {
             throw new ServiceException(e);
         }

@@ -79,6 +79,10 @@ public class Tour {
                 '}';
     }
 
+    public void setTourHot(boolean tourHot) {
+        isTourHot = tourHot;
+    }
+
     public class TourBuilder {
 
         public TourBuilder setId(int id) {

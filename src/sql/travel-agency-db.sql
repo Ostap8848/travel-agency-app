@@ -84,20 +84,19 @@ DROP TABLE IF EXISTS `travel-agency-db`.`order_has_tour` ;
 CREATE TABLE IF NOT EXISTS `travel-agency-db`.`order_has_tour` (
   `order_id` INT NOT NULL,
   `tour_id` INT NOT NULL,
-  `persons_to_go` INT NOT NULL,
   PRIMARY KEY (`order_id`, `tour_id`),
   INDEX `fk_order_has_tour_tour1_idx` (`tour_id` ASC) VISIBLE,
   INDEX `fk_order_has_tour_order_idx` (`order_id` ASC) VISIBLE,
   CONSTRAINT `fk_order_has_tour_order`
     FOREIGN KEY (`order_id`)
     REFERENCES `travel-agency-db`.`orders` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_has_tour_tour1`
     FOREIGN KEY (`tour_id`)
     REFERENCES `travel-agency-db`.`tours` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

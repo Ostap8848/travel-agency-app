@@ -124,7 +124,7 @@
                 </td>
                 <td><c:out value="${tour.description}"/>
                 </td>
-                <td><input type="button" value="Select" onclick="window.location='makeOrder.jsp'"></td>
+                <td><input type="button" value="<fmt:message key="index.book"/>" onclick="window.location='home?command=addTourIntoOrder&tourId=${tour.id}&userId=${user.id}'"></td>
             </tr>
         </c:forEach>
         <br>

@@ -41,12 +41,6 @@
                        style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
                        minlength="8"  required></td>
         </tr>
-        <tr>
-            <td>Repeat Password</td>
-            <td><input type="password" name="password"
-                       style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                       minlength="8" required></td>
-        </tr>
     </table>
     <input type="submit" value="<fmt:message key="index.login"/>" /></form>
 </div>

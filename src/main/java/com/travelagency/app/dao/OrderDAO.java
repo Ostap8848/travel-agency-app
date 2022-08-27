@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface OrderDAO {
-    boolean insertOrder(Order order) throws DBException;
+    boolean insertOrder(int userId, int tourId, Order order) throws DBException;
 
     boolean deleteOrder(Order order) throws DBException;
 

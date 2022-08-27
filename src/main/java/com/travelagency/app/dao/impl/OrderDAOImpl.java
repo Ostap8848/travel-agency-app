@@ -5,14 +5,12 @@ import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.OrderDAO;
 import com.travelagency.app.dao.mapper.OrderMapper;
 import com.travelagency.app.model.entity.Order;
+import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.model.entity.constant.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,13 +39,56 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean insertOrder(Order order) throws DBException {
-        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.INSERT_ORDER)) {
-            setOrderParameters(order, preparedStatement);
-            return preparedStatement.executeUpdate() != 0;
+    public boolean insertOrder(int userId, int tourId, Order order) throws DBException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = connect();
+            con.setAutoCommit(false);
+            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+
+            pstmt = con.prepareStatement(ConstantsQuery.INSERT_ORDER, Statement.RETURN_GENERATED_KEYS);
+            setOrderParameters(order, pstmt);
+            pstmt.setInt(4, userId);
+            int count = pstmt.executeUpdate();
+            if (count > 0) {
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        order.setId(rs.getInt(1));
+                    }
+                }
+            }
+            pstmt = con.prepareStatement(ConstantsQuery.INSERT_INTO_ORDER_HAS_TOUR);
+            pstmt.setInt(1, order.getId());
+            pstmt.setInt(2, tourId);
+            pstmt.executeUpdate();
+            con.commit();
+            return true;
         } catch (SQLException e) {
             LOG.error("Failed to insert order: ", e);
+            rollback(con);
             throw new DBException(e);
+        } finally {
+            close(pstmt);
+            close(con);
+        }
+    }
+
+    private void rollback(Connection con) {
+        try {
+            con.rollback();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void close(AutoCloseable con) {
+        if (con != null) {
+            try {
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -140,4 +181,5 @@ public class OrderDAOImpl implements OrderDAO {
     private Connection connect() {
         return DataSourceConnection.getInstance().getConnection();
     }
+
 }

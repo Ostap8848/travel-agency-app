@@ -139,7 +139,7 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         commands.addCommand("toursByType", command);
 
         //Order commands
-        command = new AddTourIntoOrderCommand();
+        command = new AddTourIntoOrderCommand(tourService, orderService);
         commands.addCommand("addTourIntoOrder", command);
 
         command = new SetTourStatusCommand();

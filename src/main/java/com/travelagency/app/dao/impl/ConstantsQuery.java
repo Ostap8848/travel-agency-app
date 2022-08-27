@@ -27,7 +27,10 @@ public class ConstantsQuery {
     public static final String NUMBER_OF_TOUR_RECORDS = "SELECT COUNT(*) FROM tours";
 
 
-    public static final String INSERT_ORDER = "INSERT INTO orders (price, status, notes) VALUES (?,?,?)";
+    public static final String INSERT_ORDER = "INSERT INTO orders (price, status, notes, users_id) VALUES (?,?,?,?)";
+    public static final String INSERT_INTO_ORDER_HAS_TOUR = "INSERT INTO order_has_tour (order_id, tour_id) VALUES (?, ?)";
+
+
     public static final String DELETE_ORDER = "DELETE FROM orders WHERE id = ?";
     public static final String UPDATE_ORDER = "UPDATE orders SET price = ?, status = ?, notes = ? WHERE id = ?";
     public static final String GET_ORDER_BY_ID = "SELECT * FROM orders WHERE id = ?";

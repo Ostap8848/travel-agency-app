@@ -41,6 +41,10 @@ public class Order {
                 '}';
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public class OrderBuilder {
         public OrderBuilder setId(int id) {
             Order.this.id = id;
