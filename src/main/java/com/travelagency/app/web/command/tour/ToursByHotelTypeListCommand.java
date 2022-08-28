@@ -30,7 +30,7 @@ public class ToursByHotelTypeListCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         int page;
-        if (request.getParameter("page") == null) {
+        if (request.getParameter("page") == null || request.getParameter("page").equals("")) {
             page = 1;
         } else {
             page = Integer.parseInt(request.getParameter("page"));

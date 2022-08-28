@@ -153,3 +153,9 @@ R
 Osrc/main/java/com/travelagency/app/web/command/user/PersonalAccountCommand.java,0\d\0ddf7f1f4cb212c59870ecfa5b759d10d4ca218f
 z
 Jsrc/main/java/com/travelagency/app/web/command/order/OrderFormCommand.java,4\d\4d1e309fa4a90ef33b99f14bbc74e691e5226896
+€
+Psrc/main/java/com/travelagency/app/web/command/tour/AdminListOfToursCommand.java,6\9\6932593bb9655f90e411559eb79c8f78ad3a5d43
+N
+src/main/webapp/createTour.jsp,f\9\f9b7ceaff5079782b01b7c73422b00810ec64758
+T
+$src/main/webapp/adminListOfTours.jsp,5\b\5bd139a71d965004a3ac88ae070bfe0f39a65540

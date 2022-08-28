@@ -111,19 +111,31 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         command = new AllToursListCommand(tourService);
         commands.addCommand("allTours", command);
 
+        command = new AdminListOfToursCommand(tourService);
+        commands.addCommand("adminListOfTours", command);
+
         command = new AllHotToursListCommand(tourService);
         commands.addCommand("hotTours", command);
 
-        command = new CreateTourCommand();
+        command = new CreateTourFormCommand();
+        commands.addCommand("createTourForm", command);
+
+        command = new CreateTourCommand(tourService);
         commands.addCommand("createTour", command);
 
-        command = new DefineTourAsHotCommand();
+        command = new DefineTourAsHotCommand(tourService);
         commands.addCommand("defineTourAsHot", command);
 
-        command = new DeleteTourCommand();
+        command = new DeleteTourCommand(tourService);
         commands.addCommand("deleteTour", command);
 
-        command = new EditTourInfoCommand();
+        /*command = new CatchTourForEditionCommand(tourService);
+        commands.addCommand("catchTourForEdition", command);*/
+
+        command = new EditTourInfoFormCommand(tourService);
+        commands.addCommand("editTourInfoForm", command);
+
+        command = new EditTourInfoCommand(tourService);
         commands.addCommand("editTourInfo", command);
 
         command = new ToursByHotelTypeListCommand(tourService);

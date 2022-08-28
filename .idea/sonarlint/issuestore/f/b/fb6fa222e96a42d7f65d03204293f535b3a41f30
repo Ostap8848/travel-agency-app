@@ -1,5 +1,7 @@
 
-d
-java:S2095S"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8¡¥À‹©0
 e
-java:S2095€"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(´ÁÜ€8¡¥À‹©0
+java:S2095©"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(´ÁÜ€8”õå‚®0
+e
+java:S1128"CRemove this unused import 'com.travelagency.app.model.entity.Tour'.(¿í‘Ìûÿÿÿÿ8¶ÊÊÿ­0
+d
+java:S2095|"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ò¡¥¹8”õå‚®0

@@ -57,6 +57,7 @@
             <li class="page-item">
                 <form action="home" method="get">
                     <input hidden name="command" value="toursByHotelType">
+                    <input type="hidden" name="page" value="${param.page}">
                     <%--<input hidden name="page" value="${param.page}">--%>
                     <select name="hotelType">
                         <option disabled><fmt:message key="index.byHotelType"/></option>
@@ -71,12 +72,13 @@
             </li>
             <li class="page-item"><a class="page-link"
                                      href="home?command=toursByNumberOfPersons&page=${param.page}"><fmt:message
-                    key="index.ByNumberOfPersons"/></a></li>
+                    key="index.byNumberOfPersons"/></a></li>
             <li class="page-item"><a class="page-link" href="home?command=toursByPrice&page=${param.page}"><fmt:message
                     key="index.byPrice"/></a></li>
             <li class="page-item">
                 <form action="home" method="get">
                     <input hidden name="command" value="toursByType">
+                    <input type="hidden" name="page" value="${param.page}">
                     <select name="tourType">
                         <option disabled><fmt:message key="index.byType"/></option>
                         <option value="REST"><fmt:message key="index.rest"/></option>

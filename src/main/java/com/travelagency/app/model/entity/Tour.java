@@ -79,6 +79,42 @@ public class Tour {
                 '}';
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNameUkr(String nameUkr) {
+        this.nameUkr = nameUkr;
+    }
+
+    public void setNameEng(String nameEng) {
+        this.nameEng = nameEng;
+    }
+
+    public void setTourType(TourType tourType) {
+        this.tourType = tourType;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setNumberOfPersons(int numberOfPersons) {
+        this.numberOfPersons = numberOfPersons;
+    }
+
+    public void setHotelTypeByStars(Hotel hotelTypeByStars) {
+        this.hotelTypeByStars = hotelTypeByStars;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setTourHot(boolean tourHot) {
         isTourHot = tourHot;
     }

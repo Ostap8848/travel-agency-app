@@ -1,5 +1,5 @@
 
-D
-java:S1068"'Remove this unused "LOG" private field.(ñè„…8‹•âİ­0
 p
-java:S1128"SRemove this unused import 'com.travelagency.app.web.command.user.BlockUserCommand'.(’ÈÆì8Ëâİ­0
+java:S1128"SRemove this unused import 'com.travelagency.app.web.command.user.BlockUserCommand'.(’ÈÆì8Ëâİ­0
+D
+java:S1068"'Remove this unused "LOG" private field.(ñè„…8‹•âİ­0

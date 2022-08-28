@@ -24,7 +24,7 @@ public class DefineTourAsHotCommand implements ActionCommand {
             Tour tour = tourService.getTourById(Integer.parseInt(request.getParameter("tourId")));
             tour.setTourHot(true);
             tourService.update(tour);
-            return "adminListOfTours.jsp";
+            return "home?command=adminListOfTours";
         } catch (ServiceException e) {
             LOG.error("Error: {}", e);
             return "errorPage.jsp";

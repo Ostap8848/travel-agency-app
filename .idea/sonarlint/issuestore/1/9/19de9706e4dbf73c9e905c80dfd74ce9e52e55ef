@@ -1,11 +1,11 @@
 
-o
-java:S1128"RRemove this unused import 'com.travelagency.app.web.service.impl.UserServiceImpl'.(£ó¸ê8Ğ†û­0
-f
-java:S1128"IRemove this unused import 'com.travelagency.app.web.service.TourService'.(üÔÓ«8¾»ş­0
 s
 java:S1128"VRemove this unused import 'com.travelagency.app.web.command.tour.AllToursListCommand'.(õ§Ä8‚ş­0
-e
-java:S1128"CRemove this unused import 'com.travelagency.app.model.entity.Tour'.(¿í‘Ìûÿÿÿÿ8† Î­0
 I
 java:S1068"'Remove this unused "LOG" private field.(²Í†¹şÿÿÿÿ8ıŸü­0
+e
+java:S1128"CRemove this unused import 'com.travelagency.app.model.entity.Tour'.(¿í‘Ìûÿÿÿÿ8† Î­0
+f
+java:S1128"IRemove this unused import 'com.travelagency.app.web.service.TourService'.(üÔÓ«8¾»ş­0
+o
+java:S1128"RRemove this unused import 'com.travelagency.app.web.service.impl.UserServiceImpl'.(£ó¸ê8Ğ†û­0

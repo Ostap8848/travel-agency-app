@@ -73,7 +73,7 @@
                            required=""></td>
             </tr>
         </table>
-        <input type="submit" value="Confirm">
+        <input type="submit" value="<fmt:message key="index.confirm"/>">
     </form>
 </div>
 </body>
