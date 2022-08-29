@@ -6,9 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%--<%@ page isELIgnored="false" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="WEB-INF/tld/mytag.tld" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages"/>
 <html>
@@ -67,6 +67,8 @@
 <br>
 <h4 align="center"><b><fmt:message key="index.address"/></b></h4>
 <h4 align="center"><fmt:message key="index.exactAddress"/></h4>
+<br>
+<h4 align="center"><my:today/></h4>
 
 </body>
 </html>
