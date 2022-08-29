@@ -4,13 +4,11 @@ import com.travelagency.app.dao.OrderDAO;
 import com.travelagency.app.dao.UserDAO;
 import com.travelagency.app.dao.impl.OrderDAOImpl;
 import com.travelagency.app.dao.impl.UserDAOImpl;
-import com.travelagency.app.web.command.ActionCommand;
-import com.travelagency.app.web.command.CommandContainer;
+import com.travelagency.app.web.command.*;
 import com.travelagency.app.dao.TourDAO;
 import com.travelagency.app.dao.impl.TourDAOImpl;
-import com.travelagency.app.web.command.HomePageCommand;
-import com.travelagency.app.web.command.SetLocale;
 import com.travelagency.app.web.command.order.AddTourIntoOrderCommand;
+import com.travelagency.app.web.command.order.FulfillOrderCommand;
 import com.travelagency.app.web.command.order.OrderFormCommand;
 import com.travelagency.app.web.command.order.SetTourStatusCommand;
 import com.travelagency.app.web.command.tour.*;
@@ -75,6 +73,9 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         commands.addCommand("", command);
         command = new SetLocale();
         commands.addCommand("setLocale", command);
+
+        command = new ErrorCommand();
+        commands.addCommand("error", command);
 
         //User commands
         command = new RegisterFormCommand();
@@ -157,8 +158,11 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         command = new SetTourStatusCommand();
         commands.addCommand("setTourStatus", command);
 
-        command = new OrderFormCommand();
+        command = new OrderFormCommand(tourService);
         commands.addCommand("orderForm", command);
+
+        command = new FulfillOrderCommand(tourService);
+        commands.addCommand("fulfillOrder", command);
 
         context.setAttribute("commandContainer", commands);
     }
