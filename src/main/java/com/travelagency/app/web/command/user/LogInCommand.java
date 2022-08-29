@@ -2,6 +2,7 @@ package com.travelagency.app.web.command.user;
 
 import com.travelagency.app.encryption.CryptPassword;
 import com.travelagency.app.model.entity.User;
+import com.travelagency.app.model.entity.constant.Role;
 import com.travelagency.app.web.command.ActionCommand;
 import com.travelagency.app.web.command.exception.CommandException;
 import com.travelagency.app.web.service.UserService;
@@ -23,6 +24,7 @@ public class LogInCommand implements ActionCommand {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+        String page = null;
         HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
@@ -37,7 +39,17 @@ public class LogInCommand implements ActionCommand {
         } else {
             LOG.info("Cannot log in");
             return "errorPage.jsp";
+            //throw new CommandException();
         }
-        return "home.jsp";
+        if (user.getRole() == Role.ADMINISTRATOR) {
+            page = "adminPanel.jsp";
+        }
+        if (user.getRole() == Role.MANAGER) {
+            page = "managerCabinet.jsp";
+        }
+        if (user.getRole() == Role.CLIENT) {
+            page = "personalAccount.jsp";
+        }
+        return page;
     }
 }

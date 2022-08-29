@@ -20,8 +20,7 @@
     <!-- Bootstrap Bundle JS (jsDelivr CDN) -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
-<body>
-<%--<jsp:include page="header/header.jspf"/>--%>
+<body style="background-image: url('${pageContext.request.contextPath}/pics/background.jpg')">
 <div class="container-fluid p-4 my-0 bg-light text-info">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <div class="col-md-1 text-end">

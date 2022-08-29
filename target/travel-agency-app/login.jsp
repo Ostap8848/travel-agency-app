@@ -22,7 +22,7 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="background-image: url('${pageContext.request.contextPath}/pics/background.jpg')">
 <h2 align="center"><fmt:message key="index.pleaseLogin"/></h2>
 <div align="center">
 <form action="home" method="post">

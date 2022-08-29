@@ -15,7 +15,7 @@
 
 <body style="background-image: url( '${pageContext.request.contextPath}/pics/error_500.jpg')">
 
-<p style="background: white; font-weight: bold; text-align: center">
+<p style="background: none; font-weight: bold; text-align: center">
     Request from ${pageContext.errorData.requestURI} is failed <br/>
     Servlet name or type ${pageContext.errorData.servletName} <br/>
     Status code: ${pageContext.errorData.statusCode} <br/>

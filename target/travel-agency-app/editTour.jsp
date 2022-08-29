@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="WEB-INF/tld/mytag.tld" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages"/>
 
@@ -114,5 +115,7 @@
         <input type="submit" value="<fmt:message key="index.applyChanges"/>">
     </form>
 </div>
+<br>
+<h4 align="center"><my:today/></h4>
 </body>
 </html>

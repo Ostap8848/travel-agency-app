@@ -8,6 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="WEB-INF/tld/mytag.tld" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="messages"/>
 
@@ -71,40 +72,11 @@
                            style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
                            minlength="8" required></td>
             </tr>
-            <tr>
-                <td>Repeat Password</td>
-                <td><input type="password" name="password"
-                           style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                           minlength="8" required></td>
-            </tr>
-            <tr>
-                <td>First Name</td>
-                <td><input type="text" name="firstName"
-                           style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                           minlength="2"
-                           required=""></td>
-            </tr>
-            <tr>
-                <td>Last Name</td>
-                <td><input type="text" name="lastName"
-                           style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                           minlength="2" required=""></td>
-            </tr>
-            <tr>
-                <td>Instagram</td>
-                <td><input type="text" name="instagram"
-                           style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                           minlength="2" required=""></td>
-            </tr>
-            <tr>
-                <td>Phone Number</td>
-                <td><input type="text" name="phoneNumber"
-                           style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                           required=""></td>
-            </tr>
         </table>
         <input type="submit" value="Confirm">
     </form>
 </div>
+<br>
+<h4 align="center"><my:today/></h4>
 </body>
 </html>
