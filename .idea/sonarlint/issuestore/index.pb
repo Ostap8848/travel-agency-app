@@ -159,3 +159,15 @@ N
 src/main/webapp/createTour.jsp,f\9\f9b7ceaff5079782b01b7c73422b00810ec64758
 T
 $src/main/webapp/adminListOfTours.jsp,5\b\5bd139a71d965004a3ac88ae070bfe0f39a65540
+ƒ
+Ssrc/main/java/com/travelagency/app/web/command/tour/CatchTourForEditionCommand.java,9\c\9cccd8ba482b179116533a34aa71b3cfdc1ae73f
+~
+Nsrc/main/java/com/travelagency/app/web/command/tour/CreateTourFormCommand.java,9\f\9f58e079cbc8e39f323029c213ec765a741b3f5e
+€
+Psrc/main/java/com/travelagency/app/web/command/tour/EditTourInfoFormCommand.java,0\2\02697cd8f725f063ccbb8386a5f8112559d8e36d
+L
+src/main/webapp/editTour.jsp,3\1\313b94e73506ca83065b79a1c019c6931de7a781
+R
+"src/main/webapp/managerCabinet.jsp,5\b\5bc3a20c5054ec7ffb3b81fd56f6a44afb173e6f
+T
+$src/main/webapp/watchUsersOrders.jsp,0\9\09725835373710010d3c8a0b03908092d849c7c0

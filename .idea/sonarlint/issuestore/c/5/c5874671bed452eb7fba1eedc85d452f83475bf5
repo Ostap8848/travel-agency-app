@@ -1,3 +1,13 @@
 
-cWeb:DoctypePresenceCheck	":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ
-Z	Web:S5254	"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ
+s Web:TableHeaderHasIdOrScopeCheckE";Add either an 'id' or a 'scope' attribute to this <th> tag.(¦×„ıÿÿÿÿ8—¦ö±®0
+s Web:TableHeaderHasIdOrScopeCheckG";Add either an 'id' or a 'scope' attribute to this <th> tag.(…›±¦üÿÿÿÿ8—¦ö±®0
+s Web:TableHeaderHasIdOrScopeCheckJ";Add either an 'id' or a 'scope' attribute to this <th> tag.(á•÷æûÿÿÿÿ8Òõ”²®0
+PWeb:PageWithoutTitleCheck."Add a <title> tag to this page.(œ÷Ãûÿÿÿÿ8«ş±®0
+E	Web:S1827")Remove this deprecated "align" attribute.(Ù˜¯ö8Ã§€±®0
+Z	Web:S5254."@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ
+P	Web:S1827C"/Remove this deprecated "cellpadding" attribute.(½–û›ûÿÿÿÿ8—¦ö±®0
+TWeb:TableWithoutCaptionCheckC" Add a description to this table.(½–û›ûÿÿÿÿ8—¦ö±®0
+cWeb:DoctypePresenceCheck.":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ
+s Web:TableHeaderHasIdOrScopeCheckF";Add either an 'id' or a 'scope' attribute to this <th> tag.(©ÔÆ…øÿÿÿÿ8½Ÿ²®0
+s Web:TableHeaderHasIdOrScopeCheckH";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÆÊÉ¿ıÿÿÿÿ8—¦ö±®0
+s Web:TableHeaderHasIdOrScopeCheckI";Add either an 'id' or a 'scope' attribute to this <th> tag.(ùøößşÿÿÿÿ8—¦ö±®0
