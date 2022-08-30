@@ -49,9 +49,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderById(int orderId) throws ServiceException {
+    public int getOrderId(int tourId) throws ServiceException {
         try {
-            return orderDAO.getOrderById(orderId);
+            return orderDAO.getOrderId(tourId);
         } catch (DBException e) {
             throw new ServiceException(e);
         }

@@ -22,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean insert(User user) throws ServiceException {
+        if (user == null) {
+            throw new IllegalArgumentException();
+        }
         try {
             return userDAO.insertUser(user);
         } catch (DBException e) {

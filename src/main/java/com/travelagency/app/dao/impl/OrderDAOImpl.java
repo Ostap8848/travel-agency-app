@@ -1,11 +1,10 @@
 package com.travelagency.app.dao.impl;
 
-import com.travelagency.app.connection.DataSourceConnection;
-import com.travelagency.app.dao.exception.DBException;
+import com.travelagency.app.util.connection.DataSourceConnection;
 import com.travelagency.app.dao.OrderDAO;
+import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.mapper.OrderMapper;
 import com.travelagency.app.model.entity.Order;
-import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.model.entity.constant.Status;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -113,6 +112,25 @@ public class OrderDAOImpl implements OrderDAO {
             LOG.error("Failed to update order: ", e);
             throw new DBException(e);
         }
+    }
+
+    @Override
+    public int getOrderId(int tourId) throws DBException {
+        ResultSet resultSet = null;
+        int orderId = 0;
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.GET_ORDER_ID)) {
+            preparedStatement.setInt(1, tourId);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                orderId = resultSet.getInt("order_id");
+            }
+        } catch (SQLException e) {
+            LOG.error("Failed to get orderId by tourId: ", e);
+            throw new DBException(e);
+        } finally {
+            close(resultSet);
+        }
+        return orderId;
     }
 
     @Override

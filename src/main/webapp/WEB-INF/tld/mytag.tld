@@ -10,7 +10,7 @@
 
     <tag>
         <name>today</name>
-        <tag-class>com.travelagency.app.tag.MyCustomTag</tag-class>
+        <tag-class>com.travelagency.app.web.tag.MyCustomTag</tag-class>
         <body-content>empty</body-content>
     </tag>
 </taglib>

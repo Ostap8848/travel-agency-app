@@ -58,19 +58,20 @@
 <div align="center">
     <h1><fmt:message key="index.register"/></h1>
     <form action="home" method="post">
-        <input hidden name="command" value="register">
+        <input hidden name="command" value="fulfillOrder">
+        <input type="hidden" name="tourId" value="${tour.id}"><br>
         <table style="with: 80%">
             <tr>
-                <td>Login</td>
-                <td> <input type="text" name="login"
+                <td><fmt:message key="index.enterNumberOfPersons"/></td>
+                <td> <input type="text" name="numberOfPersons"
                             style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
                             required></td>
             </tr>
             <tr>
-                <td>Password</td>
-                <td><input type="password" name="password"
+                <td><fmt:message key="index.stepDiscount"/></td>
+                <td><input type="text" name="stepDiscount"
                            style="width: 500px;background-color: #ffffff;margin-bottom: 16px;"
-                           minlength="8" required></td>
+                           required></td>
             </tr>
         </table>
         <input type="submit" value="Confirm">

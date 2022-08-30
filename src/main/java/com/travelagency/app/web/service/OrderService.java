@@ -14,7 +14,7 @@ public interface OrderService {
 
     boolean update(Order order) throws ServiceException;
 
-    Order getOrderById(int orderId) throws ServiceException;
+    int getOrderId(int tourId) throws ServiceException;
 
     List<Order> getOrdersByStatus(Status tourStatus) throws ServiceException;
 

@@ -1,6 +1,6 @@
 package com.travelagency.app.web.command.user;
 
-import com.travelagency.app.encryption.CryptPassword;
+import com.travelagency.app.util.encryption.CryptPassword;
 import com.travelagency.app.model.entity.User;
 import com.travelagency.app.model.entity.constant.Role;
 import com.travelagency.app.web.command.ActionCommand;

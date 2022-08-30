@@ -14,6 +14,8 @@ public interface OrderDAO {
 
     boolean updateOrder(Order order) throws DBException;
 
+    int getOrderId(int tourId) throws DBException;
+
     Order getOrderById(int orderId) throws DBException;
 
     List<Order> getOrdersByStatus(Status tourStatus) throws DBException;

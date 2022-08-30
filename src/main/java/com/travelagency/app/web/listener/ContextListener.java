@@ -161,7 +161,7 @@ public class ContextListener implements ServletContextListener, HttpSessionListe
         command = new OrderFormCommand(tourService);
         commands.addCommand("orderForm", command);
 
-        command = new FulfillOrderCommand(tourService);
+        command = new FulfillOrderCommand(tourService, orderService);
         commands.addCommand("fulfillOrder", command);
 
         context.setAttribute("commandContainer", commands);

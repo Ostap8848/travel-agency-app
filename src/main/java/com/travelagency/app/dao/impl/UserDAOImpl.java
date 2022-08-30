@@ -1,7 +1,6 @@
 package com.travelagency.app.dao.impl;
 
-import com.travelagency.app.connection.DataBaseConnection;
-import com.travelagency.app.connection.DataSourceConnection;
+import com.travelagency.app.util.connection.DataSourceConnection;
 import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.UserDAO;
 import com.travelagency.app.dao.mapper.UserMapper;

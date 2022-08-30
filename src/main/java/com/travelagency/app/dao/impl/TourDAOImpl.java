@@ -1,6 +1,6 @@
 package com.travelagency.app.dao.impl;
 
-import com.travelagency.app.connection.DataSourceConnection;
+import com.travelagency.app.util.connection.DataSourceConnection;
 import com.travelagency.app.dao.TourDAO;
 import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.mapper.TourMapper;
@@ -10,14 +10,12 @@ import com.travelagency.app.model.entity.constant.TourType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**

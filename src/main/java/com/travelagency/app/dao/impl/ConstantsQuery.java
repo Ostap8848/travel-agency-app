@@ -33,6 +33,7 @@ public class ConstantsQuery {
 
     public static final String DELETE_ORDER = "DELETE FROM orders WHERE id = ?";
     public static final String UPDATE_ORDER = "UPDATE orders SET price = ?, status = ?, notes = ? WHERE id = ?";
+    public static final String GET_ORDER_ID = "SELECT order_id FROM order_has_tour WHERE tour_id = ?";
     public static final String GET_ORDER_BY_ID = "SELECT * FROM orders WHERE id = ?";
     public static final String GET_ORDERS_BY_TOUR_STATUS = "SELECT * FROM orders WHERE status = ?";
     public static final String FIND_ALL_ORDERS = "SELECT * FROM orders";

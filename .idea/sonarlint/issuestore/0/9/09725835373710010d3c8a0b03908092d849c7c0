@@ -1,13 +1,14 @@
 
-s Web:TableHeaderHasIdOrScopeCheck7";Add either an 'id' or a 'scope' attribute to this <th> tag.(…›±¦üÿÿÿÿ8Ş¢…³®0
-jWeb:DoctypePresenceCheck-":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ8Ş¢…³®0
-s Web:TableHeaderHasIdOrScopeCheck8";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÆÊÉ¿ıÿÿÿÿ8Ş¢…³®0
-TWeb:TableWithoutCaptionCheck3" Add a description to this table.(½–û›ûÿÿÿÿ8Ş¢…³®0
-P	Web:S18273"/Remove this deprecated "cellpadding" attribute.(½–û›ûÿÿÿÿ8Ş¢…³®0
-PWeb:PageWithoutTitleCheck-"Add a <title> tag to this page.(œ÷Ãûÿÿÿÿ8Ş¢…³®0
-s Web:TableHeaderHasIdOrScopeCheck6";Add either an 'id' or a 'scope' attribute to this <th> tag.(©ÔÆ…øÿÿÿÿ8Ş¢…³®0
-E	Web:S1827")Remove this deprecated "align" attribute.(Ù˜¯ö8Ş¢…³®0
-s Web:TableHeaderHasIdOrScopeCheck5";Add either an 'id' or a 'scope' attribute to this <th> tag.(¦×„ıÿÿÿÿ8Ş¢…³®0
-a	Web:S5254-"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8Ş¢…³®0
-s Web:TableHeaderHasIdOrScopeCheck:";Add either an 'id' or a 'scope' attribute to this <th> tag.(á•÷æûÿÿÿÿ8Ş¢…³®0
-s Web:TableHeaderHasIdOrScopeCheck9";Add either an 'id' or a 'scope' attribute to this <th> tag.(ùøößşÿÿÿÿ8Ş¢…³®0
+s Web:TableHeaderHasIdOrScopeCheck;";Add either an 'id' or a 'scope' attribute to this <th> tag.(á•÷æûÿÿÿÿ8Ş¢…³®0
+s Web:TableHeaderHasIdOrScopeCheck:";Add either an 'id' or a 'scope' attribute to this <th> tag.(ùøößşÿÿÿÿ8Ş¢…³®0
+TWeb:TableWithoutCaptionCheck4" Add a description to this table.(½–û›ûÿÿÿÿ8Ş¢…³®0
+jWeb:DoctypePresenceCheck.":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ8Ş¢…³®0
+a	Web:S5254."@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8Ş¢…³®0
+s Web:TableHeaderHasIdOrScopeCheck6";Add either an 'id' or a 'scope' attribute to this <th> tag.(¦×„ıÿÿÿÿ8Ş¢…³®0
+s Web:TableHeaderHasIdOrScopeCheck7";Add either an 'id' or a 'scope' attribute to this <th> tag.(©ÔÆ…øÿÿÿÿ8Ş¢…³®0
+PWeb:PageWithoutTitleCheck."Add a <title> tag to this page.(œ÷Ãûÿÿÿÿ8Ş¢…³®0
+s Web:TableHeaderHasIdOrScopeCheck9";Add either an 'id' or a 'scope' attribute to this <th> tag.(ÆÊÉ¿ıÿÿÿÿ8Ş¢…³®0
+E	Web:S1827")Remove this deprecated "align" attribute.(Ù˜¯ö8Ş¢…³®0
+P	Web:S18274"/Remove this deprecated "cellpadding" attribute.(½–û›ûÿÿÿÿ8Ş¢…³®0
+s Web:TableHeaderHasIdOrScopeCheck8";Add either an 'id' or a 'scope' attribute to this <th> tag.(…›±¦üÿÿÿÿ8Ş¢…³®0
+E	Web:S1827]")Remove this deprecated "align" attribute.(ƒ”¯Ÿ8àÃ¦Ï®0
