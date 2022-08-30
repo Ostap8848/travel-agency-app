@@ -13,7 +13,7 @@
 <div class="header">
 
     <a href = "home?command=setLocale&locale=ukr&pageToTranslate=${param.command}" role="button"
-       class="btn btn-outline-primary me-2">Ua</a>
+       class="btn btn-outline-primary me-2">Ukr</a>
     <a href = "home?command=setLocale&locale&pageToTranslate=${param.command}" role="button"
        class="btn btn-outline-primary me-2">Eng</a>
 
@@ -22,7 +22,7 @@
 <head>
     <title>Title</title>
 </head>
-<body style="background-image: url('${pageContext.request.contextPath}/pics/background.jpg')">
+<body>
 <h2 align="center"><fmt:message key="index.pleaseLogin"/></h2>
 <div align="center">
 <form action="home" method="post">

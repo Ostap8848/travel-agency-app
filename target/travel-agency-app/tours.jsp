@@ -18,7 +18,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <div class="col-md-1 text-end">
                 <a href = "home?command=setLocale&locale=ukr&pageToTranslate=${param.command}" role="button"
-                   class="btn btn-outline-primary me-2">Ua</a>
+                   class="btn btn-outline-primary me-2">Ukr</a>
                 <a href = "home?command=setLocale&locale&pageToTranslate=${param.command}" role="button"
                    class="btn btn-outline-primary me-2">Eng</a>
             </div>

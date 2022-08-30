@@ -38,6 +38,7 @@ public class AddTourIntoOrderCommand implements ActionCommand {
                     .setNotes(null)
                     .build();
             orderService.insert(userId, tour.getId(), order);
+            request.setAttribute("tour", tour);
         } catch (ServiceException e) {
             throw new CommandException(e);
         }

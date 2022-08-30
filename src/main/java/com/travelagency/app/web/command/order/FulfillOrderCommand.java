@@ -1,5 +1,6 @@
 package com.travelagency.app.web.command.order;
 
+import com.travelagency.app.model.entity.Order;
 import com.travelagency.app.model.entity.Tour;
 import com.travelagency.app.web.command.ActionCommand;
 import com.travelagency.app.web.command.exception.CommandException;
@@ -30,10 +31,14 @@ public class FulfillOrderCommand implements ActionCommand {
         int tourId = Integer.parseInt(request.getParameter("tourId"));
         int personsToGo = Integer.parseInt(request.getParameter("numberOfPersons"));
         BigDecimal stepDiscount = BigDecimal.valueOf(Double.parseDouble(request.getParameter("stepDiscount")));
+        Order order = null;
         try {
           tour = tourService.getTourById(tourId);
-            finalPrice = (tour.getPrice().subtract((tour.getPrice().multiply(stepDiscount)).divide(BigDecimal.valueOf(100), 2, RoundingMode.DOWN))).multiply(BigDecimal.valueOf(personsToGo));
+            finalPrice = calculateFinalPrice(tour, stepDiscount, personsToGo);
             int orderId = orderService.getOrderId(tourId);
+            order = orderService.getOrderById(orderId);
+            order.setPrice(finalPrice);
+            orderService.update(order);
         } catch (ServiceException e) {
             LOG.error("Error: {}", e);
             throw new CommandException(e);
@@ -41,7 +46,7 @@ public class FulfillOrderCommand implements ActionCommand {
         return "personalAccount.jsp";
     }
 
-    private BigDecimal calculateFinalPrice() {
-        return BigDecimal.valueOf(0);
+    private BigDecimal calculateFinalPrice(Tour tour, BigDecimal stepDiscount, int personsToGo) {
+        return (tour.getPrice().subtract((tour.getPrice().multiply(stepDiscount)).divide(BigDecimal.valueOf(100), 2, RoundingMode.DOWN))).multiply(BigDecimal.valueOf(personsToGo));
     }
 }

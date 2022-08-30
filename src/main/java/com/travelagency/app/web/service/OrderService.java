@@ -16,6 +16,8 @@ public interface OrderService {
 
     int getOrderId(int tourId) throws ServiceException;
 
+    Order getOrderById(int orderId) throws ServiceException;
+
     List<Order> getOrdersByStatus(Status tourStatus) throws ServiceException;
 
     List<Order> findAllOrders() throws ServiceException;

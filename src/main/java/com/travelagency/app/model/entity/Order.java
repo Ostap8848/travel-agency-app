@@ -45,6 +45,10 @@ public class Order {
         this.id = id;
     }
 
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public class OrderBuilder {
         public OrderBuilder setId(int id) {
             Order.this.id = id;
