@@ -3,6 +3,7 @@ package com.travelagency.app.web.service;
 import com.travelagency.app.dao.UserDAO;
 import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.model.entity.User;
+import com.travelagency.app.model.entity.constant.Role;
 import com.travelagency.app.web.service.exception.ServiceException;
 import com.travelagency.app.web.service.impl.UserServiceImpl;
 import org.junit.Test;
@@ -26,6 +27,11 @@ public class UserServiceTest {
 
         @Override
         public boolean updateUser(User user) throws DBException {
+            return false;
+        }
+
+        @Override
+        public boolean updateUserRole(Role role, int userId) throws DBException {
             return false;
         }
 

@@ -1,5 +1,7 @@
 package com.travelagency.app.dao.impl;
 
+import com.travelagency.app.model.entity.constant.Role;
+import com.travelagency.app.util.connection.DataBaseConnection;
 import com.travelagency.app.util.connection.DataSourceConnection;
 import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.UserDAO;
@@ -70,6 +72,19 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             LOG.error("Failed to update user: ", e);
+            throw new DBException(e);
+        }
+    }
+
+    @Override
+    public boolean updateUserRole(Role role, int userId) throws DBException{
+        try (PreparedStatement preparedStatement = connect().prepareStatement(ConstantsQuery.UPDATE_USER_ROLE)) {
+            preparedStatement.setString(1, String.valueOf(role));
+            preparedStatement.setInt(2, userId);
+            return preparedStatement.executeUpdate() != 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            LOG.error("Failed to update user role: ", e);
             throw new DBException(e);
         }
     }

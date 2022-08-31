@@ -1,6 +1,7 @@
 package com.travelagency.app.web.service;
 
 import com.travelagency.app.model.entity.User;
+import com.travelagency.app.model.entity.constant.Role;
 import com.travelagency.app.web.service.exception.ServiceException;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface UserService {
     boolean delete(User user) throws ServiceException;
 
     boolean update(User user) throws ServiceException;
+
+    boolean updateUserRole(Role role, int userId) throws ServiceException;
 
     User getUserById(int userId) throws ServiceException;
 

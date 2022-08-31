@@ -4,6 +4,7 @@ import com.travelagency.app.dao.UserDAO;
 import com.travelagency.app.dao.exception.DBException;
 import com.travelagency.app.dao.impl.UserDAOImpl;
 import com.travelagency.app.model.entity.User;
+import com.travelagency.app.model.entity.constant.Role;
 import com.travelagency.app.web.service.UserService;
 import com.travelagency.app.web.service.exception.ServiceException;
 
@@ -45,6 +46,15 @@ public class UserServiceImpl implements UserService {
     public boolean update(User user) throws ServiceException {
         try {
             return userDAO.updateUser(user);
+        } catch (DBException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public boolean updateUserRole(Role role, int userId) throws ServiceException {
+        try {
+            return userDAO.updateUserRole(role, userId);
         } catch (DBException e) {
             throw new ServiceException(e);
         }

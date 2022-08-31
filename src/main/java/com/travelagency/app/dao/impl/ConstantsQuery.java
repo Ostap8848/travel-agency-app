@@ -7,6 +7,7 @@ public class ConstantsQuery {
     public static final String INSERT_USER = "INSERT INTO users (first_name, last_name, email_login, password, instagram, phone_number, role, is_blocked) VALUES (?,?,?,?,?,?,?,?)";
     public static final String DELETE_USER = "DELETE FROM users WHERE id = ?";
     public static final String UPDATE_USER = "UPDATE users SET first_name = ?, last_name = ?, email_login = ?, password = ?, instagram = ?, phone_number = ?, role = ?, is_blocked = ? WHERE id = ?";
+    public static final String UPDATE_USER_ROLE = "UPDATE users SET role = ? WHERE id = ?";
     public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
     public static final String GET_USER_BY_LOGIN = "SELECT * FROM users WHERE email_login = ?";
     public static final String FIND_ALL_USERS = "SELECT * FROM users ORDER BY id ASC LIMIT 10 OFFSET ?";

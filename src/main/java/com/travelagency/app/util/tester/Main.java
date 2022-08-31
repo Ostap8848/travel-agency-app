@@ -154,6 +154,7 @@ public class Main {
         //System.out.println(tourDAO.getToursByPrice(BigDecimal.valueOf(8.99)).toString());
         //System.out.println(orderDAO.insertOrder(order3));
         //System.out.println(orderDAO.deleteOrder(4));
+        System.out.println(userDAO.updateUserRole(Role.MANAGER, 7));
 
     }
 
